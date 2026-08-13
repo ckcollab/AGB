@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B696839-F673-40C2-962F-434350DFD44B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AGB.D2</RootNamespace>
+    <AssemblyName>AGB.D2</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ALAZ.SystemEx.NetEx">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ALAZ.SystemEx.NetEx.dll</HintPath>
+    </Reference>
+    <Reference Include="D2Data">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\D2Data.dll</HintPath>
+    </Reference>
+    <Reference Include="D2Packets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\D2Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="MBNCSUtil">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MBNCSUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AGB.D2.Collections\GameRoom.cs" />
+    <Compile Include="AGB.D2.Collections\GameRooms.cs" />
+    <Compile Include="AGB.D2.Collections\Items.cs" />
+    <Compile Include="AGB.D2.Collections\NPCs.cs" />
+    <Compile Include="AGB.D2.Collections\Objects.cs" />
+    <Compile Include="AGB.D2.Collections\Players.cs" />
+    <Compile Include="AGB.D2.Collections\TownPortals.cs" />
+    <Compile Include="AGB.D2.Collections\Warps.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\AccountLogonResult.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\AuthorizationCheck.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\ChannelJoinType.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\ChannelListRequest.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\CharacterClass.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\CharacterFlag.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\ConnectionRequest.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\Country.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\CreateAccount.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\DifficultyType.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\EnterChatRequest.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\LanguageId.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\LeaveChat.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\LocalId.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\LogonRequest.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\LogonResult.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\NotifyJoin.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\ProductLanguage.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\ProtocolId.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\RealmLogon.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\Server.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\SetEmail.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\StartGame.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\TimeZone.cs" />
+    <Compile Include="AGB.D2.Net.D2.BC\Version.cs" />
+    <Compile Include="AGB.D2.Net.D2.GC\BasePacket.cs" />
+    <Compile Include="AGB.D2.Net.D2.GC\GameLogon.cs" />
+    <Compile Include="AGB.D2.Net.D2.RC\BasePacket.cs" />
+    <Compile Include="AGB.D2.Net.D2.RC\CharacterLogon.cs" />
+    <Compile Include="AGB.D2.Net.D2.RC\CreateGame.cs" />
+    <Compile Include="AGB.D2.Net.D2.RC\JoinGame.cs" />
+    <Compile Include="AGB.D2.Net.D2.RC\Logon.cs" />
+    <Compile Include="AGB.D2.Net.Packets\AGBPacket.cs" />
+    <Compile Include="AGB.D2.Net.Packets\D2PacketHandler.cs" />
+    <Compile Include="AGB.D2.Net.Packets\GetMap.cs" />
+    <Compile Include="AGB.D2.Net.Packets\GetMapResult.cs" />
+    <Compile Include="AGB.D2.Net.Packets\GetMapResultValue.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Login.cs" />
+    <Compile Include="AGB.D2.Net.Packets\LoginResult.cs" />
+    <Compile Include="AGB.D2.Net.Packets\LoginResultValue.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Message.cs" />
+    <Compile Include="AGB.D2.Net.Packets\PacketType.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Ping.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Pong.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Quit.cs" />
+    <Compile Include="AGB.D2.Net.Packets\SetNewGameInfo.cs" />
+    <Compile Include="AGB.D2.Net.Packets\SetNewGameInfoResult.cs" />
+    <Compile Include="AGB.D2.Net.Packets\SetNewGameInfoResultValue.cs" />
+    <Compile Include="AGB.D2.Net.Packets\Welcome.cs" />
+    <Compile Include="AGB.D2.Net.Packets\WelcomeResult.cs" />
+    <Compile Include="AGB.D2.Net\AgbSocket.cs" />
+    <Compile Include="AGB.D2.Net\ConnectionBase.cs" />
+    <Compile Include="AGB.D2.Net\ConnectionStateChangeEvent.cs" />
+    <Compile Include="AGB.D2.Net\D2Socket.cs" />
+    <Compile Include="AGB.D2.Net\PacketSenderType.cs" />
+    <Compile Include="AGB.D2.Net\UnknownPacketEventHandler.cs" />
+    <Compile Include="AGB.D2\Bot.cs" />
+    <Compile Include="AGB.D2\BotManager.cs" />
+    <Compile Include="AGB.D2\CachedRoom.cs" />
+    <Compile Include="AGB.D2\CdKeySet.cs" />
+    <Compile Include="AGB.D2\CdKeySetInstance.cs" />
+    <Compile Include="AGB.D2\CdKeySetProxyCombo.cs" />
+    <Compile Include="AGB.D2\CdKeySetProxyComboInstance.cs" />
+    <Compile Include="AGB.D2\Character.cs" />
+    <Compile Include="AGB.D2\ConnectResult.cs" />
+    <Compile Include="AGB.D2\Enchant.cs" />
+    <Compile Include="AGB.D2\EnterGameResult.cs" />
+    <Compile Include="AGB.D2\Game.cs" />
+    <Compile Include="AGB.D2\GameEvent.cs" />
+    <Compile Include="AGB.D2\GameLog.cs" />
+    <Compile Include="AGB.D2\Hero.cs" />
+    <Compile Include="AGB.D2\ILifeWatch.cs" />
+    <Compile Include="AGB.D2\Item.cs" />
+    <Compile Include="AGB.D2\ItemBuffer.cs" />
+    <Compile Include="AGB.D2\ItemEvent.cs" />
+    <Compile Include="AGB.D2\LoggedGame.cs" />
+    <Compile Include="AGB.D2\Map.cs" />
+    <Compile Include="AGB.D2\MapCache.cs" />
+    <Compile Include="AGB.D2\MapManager.cs" />
+    <Compile Include="AGB.D2\Mercenary.cs" />
+    <Compile Include="AGB.D2\Module.cs" />
+    <Compile Include="AGB.D2\ModuleEventArgs.cs" />
+    <Compile Include="AGB.D2\ModuleException.cs" />
+    <Compile Include="AGB.D2\ModuleExceptionEventArgs.cs" />
+    <Compile Include="AGB.D2\NPC.cs" />
+    <Compile Include="AGB.D2\NpcPropertyEventHandler.cs" />
+    <Compile Include="AGB.D2\Object.cs" />
+    <Compile Include="AGB.D2\PathNode.cs" />
+    <Compile Include="AGB.D2\Pathing.cs" />
+    <Compile Include="AGB.D2\Player.cs" />
+    <Compile Include="AGB.D2\Potion.cs" />
+    <Compile Include="AGB.D2\PotionType.cs" />
+    <Compile Include="AGB.D2\PresetUnit.cs" />
+    <Compile Include="AGB.D2\Profile.cs" />
+    <Compile Include="AGB.D2\ProxyInstance.cs" />
+    <Compile Include="AGB.D2\Realm.cs" />
+    <Compile Include="AGB.D2\RealmConnectResult.cs" />
+    <Compile Include="AGB.D2\Resistances.cs" />
+    <Compile Include="AGB.D2\Room.cs" />
+    <Compile Include="AGB.D2\TownPortal.cs" />
+    <Compile Include="AGB.D2\Unit.cs" />
+    <Compile Include="AGB.D2\Warp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AGB\AGB.csproj">
+      <Project>{52B22A86-1E64-4A30-8D35-85E342629737}</Project>
+      <Name>AGB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

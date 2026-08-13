@@ -1,0 +1,524 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>D2Data</name>
+    </assembly>
+    <members>
+        <member name="F:D2Data.UnitType.Player">
+            <summary>
+            Any player character, including yours.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitType.NPC">
+            <summary>
+            Any non player character, including town folks and monsters.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitType.GameObject">
+            <summary>
+            Most generic game objects, such as chests, dummy objects, etc.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitType.Missile">
+            <summary>
+            Any kind of missiles, even those fired by the French.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitType.Item">
+            <summary>
+            Item units.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitType.Warp">
+            <summary>
+            Doorways, stairs, etc used to change area.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitVisibility.Invalid">
+            <summary>
+            No longer valid (not in proximity, the area for which the client receives extended information.)
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitVisibility.OnScreen">
+            <summary>
+            Displayed on screen.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitVisibility.InSight">
+            <summary>
+            Visible to the character.
+            </summary>
+        </member>
+        <member name="F:D2Data.UnitVisibility.InProximity">
+            <summary>
+            Within the 2-4 screen range for which the client receives extended information.
+            </summary>
+        </member>
+        <member name="T:D2Data.StatType">
+            <summary>
+            StatType
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseUniqueItem">
+            <summary>
+            Base information class for Unique Items
+            </summary>
+        </member>
+        <member name="F:D2Data.GameObjectInteractType.TownPortal">
+            <summary>
+            Dummy value because for town portals, the intereact type is the destination area...
+            </summary>
+        </member>
+        <member name="F:D2Data.PartyRelationshipType.None">
+            <summary>
+            Player is not in any party or wanting to party
+            </summary>
+        </member>
+        <member name="F:D2Data.PartyRelationshipType.InAParty">
+            <summary>
+            Player is in a party
+            </summary>
+        </member>
+        <member name="F:D2Data.PartyRelationshipType.InvitedYou">
+            <summary>
+            Player is waiting for you to accept invitation
+            </summary>
+        </member>
+        <member name="F:D2Data.PartyRelationshipType.Invited">
+            <summary>
+            Waiting for player to accept invitation
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.Unhostile">
+            <summary>
+            Player has removed Hostile
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.InvitedYou">
+            <summary>
+            Player Is Asking To Party With You
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.JoinedParty">
+            <summary>
+            New Player Has Joined Party
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.JoinedYourParty">
+            <summary>
+            Your Now In This Players party ?
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.AllowLoot">
+            <summary>
+            Player has given you permission to loot his body
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.Hostile">
+            <summary>
+            Player has gone hostile
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.LeftParty">
+            <summary>
+            Player has left your party
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.CanceledInvite">
+            <summary>
+            Player has canlceled the party invitation
+            </summary>
+        </member>
+        <member name="F:D2Data.PlayerRelationActionType.CanceledLootPermission">
+            <summary>
+            Player has canceled permission to loot his body
+            </summary>
+        </member>
+        <member name="T:D2Data.ItemCategory">
+            <summary>
+            This is used by GS Packet 0x9C - 0x9D, and is pretty weird...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemCategory.Weapon">
+            <summary>
+            Most weapons, including Crossbows
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemCategory.Weapon2">
+            <summary>
+            Bows (not crossbows), sometimes shield (if equipped in LeftHand?)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemCategory.Shield">
+            <summary>
+            Shields can some sometimes be Weapon2...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemCategory.Special">
+            <summary>
+            Class specific items !?
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemCategory.Misc">
+            <summary>
+            BaseMiscItems and gloves, boots...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemActionType.PickToCursor">
+            <summary>
+            Only sent if item goes to cursor (packet 0x0A removes items from ground...)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemActionType.IndirectlySwapBodyItem">
+            <summary>
+            Sent for the equipped item when changing from a two handed weapon to a single handed weapon or vice versa.
+            <para>The item must be equipped on the "empty" hand or a regular SwapBodyItem will be sent instead. 
+            If currently wearing a two handed weapon, the empty hand means the left hand. 
+            The result will be the new item being equipped and the old going to cursor.</para>
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemActionType.AutoUnequip">
+            <summary>
+            Sent for the secondary hand's item going to inventory when changing from a dual item setup to a two handed weapon.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemActionType.ToCursor">
+            <summary>
+            Item on cursor when entering game.
+            <para>Also sent along with a 0x9d type 0x08 packet when unequipping merc item.</para>
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemActionType.UpdateStats">
+            <summary>
+            When inserting item in socket, for each potion that drops in belt when lower one is removed, etc.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Identified">
+            <summary>
+            Not undentified, really... also set for items that cannot be identified.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.x20">
+            <summary>
+            Has to do with aura / state change !?
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Duplicate">
+            <summary>
+            Sometimes on Mana, Healing and Rejuvenation potions and runes... use is unknown.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.OnPet">
+            <summary>
+            Set on items equipped by Valkyrie...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.x2000">
+            <summary>
+            Set on AddToShop (but not for items I sold), on items equipped by Valkyrie.
+            Also set on AddToGround and sometimes(?) on quest items... Special Interact ? Is New ?
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Ear">
+            <summary>
+            Is a player's ear. Ear packets have a different structure...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.StartItem">
+            <summary>
+            Item a character started with (meaning the item worthless to resell.)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Compact">
+            <summary>
+            Item that doesn't have an ILevel or stats.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Any">
+            <summary>
+            Meaning is unknown...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.Gamble">
+            <summary>
+            Item a town folk is offering for gambling (same purpose as Compact: no ILevel + extra info.)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemFlags.x8000000">
+            <summary>
+            Induce State Change !?
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseLevel">
+            <summary>
+            Summary description for Levels.
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseSetItem">
+            <summary>
+            Base info class for Set Items
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseWeapon">
+            <summary>
+            Data classs holding a single base item's information (as in Weapons.txt)
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseItem">
+            <summary>
+            Abstract base class and static container class for BaseArmor, BaseWeapon and BaseMiscItem
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseRuneword">
+            <summary>
+            Base info class for Runewords
+            </summary>
+        </member>
+        <member name="T:D2Data.NPCMode">
+            <summary>
+            NPC state type used by <see cref="!:GameServer.SetNPCMode"/>.
+            <para>Not the same as MonMode...</para>
+            </summary>
+        </member>
+        <member name="F:D2Data.NPCMode.Dying">
+            <summary>
+            Null X and Y means the monster displays a 'in air' dying animation..
+            </summary>
+        </member>
+        <member name="F:D2Data.NPCMode.Dead">
+            <summary>
+            Dead monsters coming into view as well.
+            </summary>
+        </member>
+        <member name="F:D2Data.NPCClass.Anya">
+            <summary>
+            Anya == Drehya
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseArmor">
+            <summary>
+            Data classs holding a single base item's information (as in Armors.txt)
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseStat">
+            <summary>
+            Base information for a single Stat Type (as in ItemStatCost.txt)
+            </summary>
+        </member>
+        <member name="F:D2Data.BaseStat.DamageRelated">
+            <summary>
+            If true and the stat is on a weapon, it will only effect your character when you are using that weapon to attack.
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseMiscItem">
+            <summary>
+            Data classs holding a single base item's information (as in Misc.txt)
+            </summary>
+        </member>
+        <member name="F:D2Data.GameQuestState.Open">
+            <summary>
+            The creator had not completed the quest and it has not been done in this game yet.
+            </summary>
+        </member>
+        <member name="F:D2Data.GameQuestState.Closed">
+            <summary>
+            The creator has already completed this quest.
+            </summary>
+        </member>
+        <member name="F:D2Data.GameQuestState.Completed">
+            <summary>
+            The quest has already been completed in game.
+            </summary>
+        </member>
+        <member name="F:D2Data.QuestState.Enabled">
+            <summary>
+            Previous quest's main goal is accomplished !?!
+            </summary>
+        </member>
+        <member name="F:D2Data.QuestState.FromNPC">
+            <summary>
+            An NPC wants to give the quest, or quest was given by an NPC.
+            </summary>
+        </member>
+        <member name="T:D2Data.QuestType">
+            <summary>
+            Diablo II quest or sub quest type.
+            </summary>
+        </member>
+        <member name="F:D2Data.CharactersInfo.Gender">
+            <summary>
+            Character Genders array. true = Female; false = Male
+            </summary>
+        </member>
+        <member name="F:D2Data.CharacterFlags.None">
+            <summary>
+            None would normally mean a male softcore character on open non-ladder classic who never died...
+            </summary>
+        </member>
+        <member name="F:D2Data.CharacterFlags.Noob">
+            <summary>
+            Character has never joined a game
+            </summary>
+        </member>
+        <member name="T:D2Data.CharacterTitle">
+            <summary>
+            All Bnet titles are 0x01 - 0x03. To match this list, add 4 if hardcore, 0x20 if expansion and 0x100 if female...
+            Some expansion title are gender neutral; if title ends with "F", remove it to get proper title...
+            </summary>
+        </member>
+        <member name="T:D2Data.ItemSet">
+            <summary>
+            Item Sets Base Info (Sets.txt)
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseItemType">
+            <summary>
+            ItemTypes.txt
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseProperty">
+            <summary>
+            Base info class for item properties (as in Properties.txt)
+            Used by Sets, Uniques and Runewords.
+            </summary>
+        </member>
+        <member name="T:D2Data.BaseState">
+            <summary>
+            Base State Information class (as in States.txt)
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Pickup">
+            <summary>
+            Item specific sound triggered when an item is swap or picked up.
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.BaalLaugh">
+            <summary>
+            Masochistic Baal has a good laugh because he's one step closer to getting his ass kicked.
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Impossible">
+            <summary>
+            Cannot perform action (pick up item with telekinesis or when there's not enough space in inventory).
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Help">
+            <summary>
+            User triggered sound 1
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.FollowMe">
+            <summary>
+            User triggered sound 2
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.ThisIsForYou">
+            <summary>
+            User triggered sound 3
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Thanks">
+            <summary>
+            User triggered sound 4
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Sorry">
+            <summary>
+            User triggered sound 5
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Bye">
+            <summary>
+            User triggered sound 6
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.NowYouDie">
+            <summary>
+            User triggered sound 7
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.Retreat">
+            <summary>
+            User triggered sound 8
+            </summary>
+        </member>
+        <member name="F:D2Data.GameSound.IllPutThatToGoodUse">
+            <summary>
+            Mercenary thanking you for equiping it with an item.
+            </summary>
+        </member>
+        <member name="T:D2Data.ItemUIAction">
+            <summary>
+            Notifies of an update to item related interface. Used by GS packet 0x77
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.RequestTrade">
+            <summary>
+            Requesting to trade with someone (result of interacting with a player who isn't "busy").
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.TradeRequest">
+            <summary>
+            Another player is requesting to trade with you.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.TradeAccepted">
+            <summary>
+            Trade partner has accepted your trade offer (Acceot button goes green.)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.UnacceptAllTrades">
+            <summary>
+            Unchecks all Accept buttons - sent whenever a trader changes anything in trade offer.
+            Or might do so soon... e.g. picks up an item from inventory, clicks the offer gold button...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.NoRoomForTrade">
+            <summary>
+            You don't have enough room to trade, sent instead of TradeCompleted when both accept but trade can't be performed.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.TraderHasNoRoom">
+            <summary>
+            Trade partner doesn't have enough room to trade, sent instead of TradeCompleted when both accept but trade can't be performed.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.RefuseTrade">
+            <summary>
+            A player refuses trade request or cancels trade before it is completed.
+            In the later case, this resets inventory / equipment to what they were before trade and closes the trade window.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.TradeCompleted">
+            <summary>
+            Both player have accepted trade and completion is successful. Trade window closes and each player get the other player's trade buffer.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.DisableAcceptTrade">
+            <summary>
+            This turns the Accept button red, making it unclickable for a certain duration (until EnableAcceptTrade is sent.)
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.EnableAcceptTrade">
+            <summary>
+            Enables the Accept trade button.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.OpenStash">
+            <summary>
+            Open the stash panel.
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.HideStash">
+            <summary>
+            Hide the stash panel with another panel, e.g. the Horadric cube panel.
+            The stash remains open and should (but doesn't always) get redisplayed when the hiding UI is closed...
+            </summary>
+        </member>
+        <member name="F:D2Data.ItemUIAction.OpenCube">
+            <summary>
+            Open the Horadric cube panel.
+            </summary>
+        </member>
+    </members>
+</doc>

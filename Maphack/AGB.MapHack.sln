@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGB", "..\AGB\AGB\AGB.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiabloReader", "DiabloReader\DiabloReader.csproj", "{C8104AE7-5F07-4CA3-A4BA-03139B6B147A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGB.Mapping", "..\AGB\AGB.Mapping\AGB.Mapping.csproj", "{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{C8104AE7-5F07-4CA3-A4BA-03139B6B147A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8104AE7-5F07-4CA3-A4BA-03139B6B147A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8104AE7-5F07-4CA3-A4BA-03139B6B147A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

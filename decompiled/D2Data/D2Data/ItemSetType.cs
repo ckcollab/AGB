@@ -1,0 +1,38 @@
+namespace D2Data;
+
+public enum ItemSetType
+{
+	CiverbsVestments,
+	HsarusDefense,
+	CleglawsBrace,
+	IrathasFinery,
+	IsenhartsArmory,
+	VidalasRig,
+	MilabregasRegalia,
+	CathansTraps,
+	TancredsBattlegear,
+	SigonsCompleteSteel,
+	InfernalTools,
+	BerserkersGarb,
+	DeathsDisguise,
+	AngelicRaiment,
+	ArcticGear,
+	ArcannasTricks,
+	NatalyasOdium,
+	AldursWatchtower,
+	ImmortalKing,
+	TalRashasWrappings,
+	GriswoldsLegacy,
+	TrangOulsAvatar,
+	MavinasBattleHymn,
+	TheDisciple,
+	HeavensBrethren,
+	OrphansCall,
+	HwaninsMajesty,
+	SazabisGrandTribute,
+	BulKathosChildren,
+	CowKingsLeathers,
+	NajsAncientSet,
+	McAuleysFolly,
+	Invalid
+}

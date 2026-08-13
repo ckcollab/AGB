@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{52B22A86-1E64-4A30-8D35-85E342629737}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AGB</RootNamespace>
+    <AssemblyName>AGB</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ALAZ.SystemEx.NetEx">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ALAZ.SystemEx.NetEx.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AGB.Collections\IPriorityQueue.cs" />
+    <Compile Include="AGB.Collections\PriorityQueueB.cs" />
+    <Compile Include="AGB.Collections\ThreadSafeList.cs" />
+    <Compile Include="AGB.Collections\ThreadSafeQueue.cs" />
+    <Compile Include="AGB.Net\AsyncUserToken.cs" />
+    <Compile Include="AGB.Net\ConnectionBase.cs" />
+    <Compile Include="AGB.Net\PacketBuffer.cs" />
+    <Compile Include="AGB.Net\PacketEvent.cs" />
+    <Compile Include="AGB.Net\PacketHandler.cs" />
+    <Compile Include="AGB.Net\PacketList.cs" />
+    <Compile Include="AGB.Net\Proxy.cs" />
+    <Compile Include="AGB.Net\Socket.cs" />
+    <Compile Include="AGB\AsyncHelper.cs" />
+    <Compile Include="AGB\Cache.cs" />
+    <Compile Include="AGB\Configuration.cs" />
+    <Compile Include="AGB\DebugLevel.cs" />
+    <Compile Include="AGB\FastBitmap.cs" />
+    <Compile Include="AGB\InfixToPostfix.cs" />
+    <Compile Include="AGB\LogEvent.cs" />
+    <Compile Include="AGB\Op.cs" />
+    <Compile Include="AGB\OpType.cs" />
+    <Compile Include="AGB\PluginManager.cs" />
+    <Compile Include="AGB\Serialize.cs" />
+    <Compile Include="AGB\Serializer.cs" />
+    <Compile Include="AGB\Task.cs" />
+    <Compile Include="AGB\TaskDelegate.cs" />
+    <Compile Include="AGB\TaskEvent.cs" />
+    <Compile Include="AGB\TaskException.cs" />
+    <Compile Include="AGB\TaskExceptionEvent.cs" />
+    <Compile Include="AGB\TaskManager.cs" />
+    <Compile Include="AGB\TaskPriority.cs" />
+    <Compile Include="AGB\TaskQueue.cs" />
+    <Compile Include="AGB\TaskQueueNode.cs" />
+    <Compile Include="AGB\TraceLog.cs" />
+    <Compile Include="AGB\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

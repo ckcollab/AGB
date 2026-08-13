@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04A5F29B-BECD-4C33-9E1D-FDCA5C543D20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AGB.Mapping</RootNamespace>
+    <AssemblyName>AGB.Mapping</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="D2Data">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\D2Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AGB.Mapping\Act.cs" />
+    <Compile Include="AGB.Mapping\ActMisc.cs" />
+    <Compile Include="AGB.Mapping\Coll.cs" />
+    <Compile Include="AGB.Mapping\Collision.cs" />
+    <Compile Include="AGB.Mapping\Ds1.cs" />
+    <Compile Include="AGB.Mapping\Level.cs" />
+    <Compile Include="AGB.Mapping\LevelId.cs" />
+    <Compile Include="AGB.Mapping\LevelOffset.cs" />
+    <Compile Include="AGB.Mapping\LvlPrest.cs" />
+    <Compile Include="AGB.Mapping\LvlType.cs" />
+    <Compile Include="AGB.Mapping\Map.cs" />
+    <Compile Include="AGB.Mapping\MapServer.cs" />
+    <Compile Include="AGB.Mapping\PresetDs1Info.cs" />
+    <Compile Include="AGB.Mapping\PresetUnit.cs" />
+    <Compile Include="AGB.Mapping\Room.cs" />
+    <Compile Include="AGB.Mapping\Room1.cs" />
+    <Compile Include="AGB.Mapping\Room2.cs" />
+    <Compile Include="AGB.Mapping\Room2Info.cs" />
+    <Compile Include="AGB.Mapping\Tiles.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AGB.D2\AGB.D2.csproj">
+      <Project>{4B696839-F673-40C2-962F-434350DFD44B}</Project>
+      <Name>AGB.D2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

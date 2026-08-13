@@ -1,0 +1,2526 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>D2Packets</name>
+    </assembly>
+    <members>
+        <member name="T:D2Packets.D2Packets.CDKeyInfo">
+            <summary>
+            Structure containing information about a single CD Key.
+            Used by <see cref="T:D2Packets.BnetClient.BnetAuthRequest"/>.
+            </summary>
+        </member>
+        <member name="F:D2Packets.D2Packets.CDKeyInfo.Length">
+            <summary>
+            Always 16 for Diablo II...
+            </summary>
+        </member>
+        <member name="F:D2Packets.D2Packets.CDKeyInfo.Unknown">
+            <summary>
+            Always 0...
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.QuestInfo">
+            <summary>
+            Structure containing information about a single quest.
+            <para>Used by <see cref="T:D2Packets.GameServer.UpdateQuestInfo"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.GameQuestInfo">
+            <summary>
+            Structure containing information about a single quest.
+            <para>Used by <see cref="T:D2Packets.GameServer.UpdateGameQuestLog"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.QuestLog">
+            <summary>
+            Structure containing information about a single quest.
+            <para>Used by <see cref="T:D2Packets.GameServer.UpdateQuestLog"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.BCPacket">
+            <summary>
+            Base class for Battle.net Client -> Server Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.D2Packet">
+            <summary>
+            Base class for Diablo II Packets
+            </summary>
+        </member>
+        <member name="M:D2Packets.D2Packets.D2Packet.Complete">
+            <summary>
+            Sets <see cref="P:D2Packets.D2Packets.D2Packet.Writable"/> to false, preventing further modifications to the packet.
+            </summary>
+        </member>
+        <member name="M:D2Packets.D2Packets.D2Packet.Block">
+            <summary>
+            Sets <see cref="P:D2Packets.D2Packets.D2Packet.Blocked"/> to true, preventing the packet from reaching the server.
+            </summary>
+        </member>
+        <member name="P:D2Packets.D2Packets.D2Packet.Origin">
+            <summary>
+            The source of the packet: which of the 3 connections it applies to and whether it was sent by the server or client.
+            </summary>
+        </member>
+        <member name="P:D2Packets.D2Packets.D2Packet.Data">
+            <summary>
+            The byte array containing the packet's raw data.
+            </summary>
+        </member>
+        <member name="P:D2Packets.D2Packets.D2Packet.Writable">
+            <summary>
+            If false, the packet can no longer be modified.
+            </summary>
+        </member>
+        <member name="P:D2Packets.D2Packets.D2Packet.Blocked">
+            <summary>
+            If true, the packet will not be sent to the server.
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.KeepAlive">
+            <summary>
+            Bnet Client Packet 0x00 - Keep Alive
+            <para>Keeps the connection alive.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.EnterChatRequest">
+            <summary>
+            Bnet Client Packet 0x0A - Enter Chat Request
+            <para>Sent when entering lobby.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.EnterChatResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.ChannelListRequest">
+            <summary>
+            Bnet Client Packet 0x0B - Channel List Request
+            <para>Requests a listing of channels.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.ChannelList"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.JoinChannelFlags">
+            <summary>
+            Join channel flags.
+            <para>Used by <see cref="T:D2Packets.BnetClient.JoinChannel"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.JoinChannel">
+            <summary>
+            Bnet Client Packet 0x0C - Join Channel
+            <para>Request joining a chat channel.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.ChatCommand">
+            <summary>
+            Bnet Client Packet 0x0E - Chat Command
+            <para>Sends a chat message or command to Battle.net.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.LeaveChat">
+            <summary>
+            Bnet Client Packet 0x10 - Leave Chat
+            <para>Sent before joining a game or exiting to character selection screen.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.AdInfoRequest">
+            <summary>
+            Bnet Client Packet 0x15 - Ad Info Request
+            <para>Requests next ad...</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.AdInfo"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.StartGameFlags">
+            <summary>
+            Result of a game flags used by <see cref="T:D2Packets.BnetClient.StartGame"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.StartGame">
+            <summary>
+            Bnet Client Packet 0x1C - Start Game
+            <para>Notifies Battle.net a game has been started so it can advertise it.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetClient.StartGame.StatString">
+            <summary>
+            Doesn't seem to be used by Diablo II...
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetClient.StartGame.Unknown7">
+            <summary>
+            Doesn't seem to be used by Diablo II...
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.LeaveGame">
+            <summary>
+            Bnet Client Packet 0x1F - Leave Game
+            <para>Notifies Battle.net you have left a game.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.DisplayAd">
+            <summary>
+            Bnet Client Packet 0x21 - Display Ad
+            <para>Notifies Battle.net an ad has been displayed.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.NotifyJoin">
+            <summary>
+            Bnet Client Packet 0x22 - Notify Join
+            <para>Notifies Battle.net you have joined a game.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.BnetPong">
+            <summary>
+            Bnet Client Packet 0x25 - Bnet Pong
+            <para>Response to BnetPing, used to calculate the ping time.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetServer.BnetPing"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.FileTimeRequest">
+            <summary>
+            Bnet Client Packet 0x33 - File Time Request
+            <para>Request the timestamp of a file to determine if was modified.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.FileTimeInfo"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.BnetLogonRequest">
+            <summary>
+            Bnet Client Packet 0x3A - Bnet Logon Request
+            <para>Actual logon request containing username and password.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.BnetLogonResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.RealmLogonRequest">
+            <summary>
+            Bnet Client Packet 0x3E - Realm Logon Request
+            <para>Request Realm server information to establish a connection.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.RealmLogonResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.QueryRealms">
+            <summary>
+            Bnet Client Packet 0x40 - Query Realms
+            <para>Request a list of realms.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.QueryRealmsResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.NewsInfoRequest">
+            <summary>
+            Bnet Client Packet 0x46 - News Info Request
+            <para>Request news...</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.NewsInfo"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.ExtraWorkResponse">
+            <summary>
+            Bnet Client Packet 0x4B - Extra Work Response
+            <para>Contains the result of the extra work performed as requested by 
+            <see cref="T:D2Packets.BnetServer.ExtraWorkInfo"/> or <see cref="T:D2Packets.BnetServer.RequiredExtraWorkInfo"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetClient.BnetConnectionRequest">
+            <summary>
+            Bnet Client Packet 0x50 - Bnet Connection Request
+            <para>First packet sent to bnet to establish a connection.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.BnetConnectionResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetClient.BnetAuthRequest">
+            <summary>
+            Bnet Client Packet 0x51 - Bnet Auth Request
+            <para>Second packet sent to bnet containing CDKey and other auth info.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetServer.BnetAuthResponse"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.BnetClient.BnetAuthRequest.OwnerName">
+            <summary>
+            The name associated with the CD Keys.
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetClient.BnetAuthRequest.KeyCount">
+            <summary>
+            Number of CD Keys in this packet. Should be 1 for Classic and 2 for Expansion
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetClient.BnetAuthRequest.GameHash">
+            <summary>
+            As returned by CheckRevision.
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetClient.BnetAuthRequest.UseSpawn">
+            <summary>
+            Always 0 for Diablo... only true (1) for Starcraft and Warcraft II.
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.PacketNotWritableException">
+            <summary>
+            Exception throw when trying to write to a packet marked as completed.
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.RCPacket">
+            <summary>
+            Base class for Realm Client -> Server Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.RealmStartupRequest">
+            <summary>
+            Realm Client Packet 0x01 - Realm Startup Request
+            <para>Request realm connection startup using the information from 
+            <see cref="T:D2Packets.BnetServer.RealmLogonResponse"/>.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.RealmStartupResponse"/>
+            </remarks>
+        </member>
+        <member name="M:D2Packets.RealmClient.RealmStartupRequest.CompareStartupData(D2Packets.BnetServer.RealmLogonResponse)">
+            <summary>
+            Compares the <see cref="P:D2Packets.RealmClient.RealmStartupRequest.StartupData"/> contained in this packet with the one in specified packet.
+            </summary>
+            <param name="realmLogon">The packet to compare with.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="M:D2Packets.RealmClient.RealmStartupRequest.CompareStartupData(System.Byte[])">
+            <summary>
+            Compares the <see cref="P:D2Packets.RealmClient.RealmStartupRequest.StartupData"/> contained in this packet with the provided data.
+            </summary>
+            <param name="bytes">Byte array containing the data to compare with.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="M:D2Packets.RealmClient.RealmStartupRequest.CompareStartupData(System.Byte[],System.Int32)">
+            <summary>
+            Compares the <see cref="P:D2Packets.RealmClient.RealmStartupRequest.StartupData"/> contained in this packet with the provided data.
+            </summary>
+            <param name="bytes">Byte array containing the data to compare with.</param>
+            <param name="offset">Offset in <paramref name="bytes"/> to start reading data at.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="P:D2Packets.RealmClient.RealmStartupRequest.Username">
+            <summary>
+            Battle.net unique username. This is the account name plus #X if it conflicts with someone else's.
+            <list type="bullet">
+            <item>Offset: 67</item>
+            <item>Length: (null terminated string)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.RealmClient.RealmStartupRequest.Cookie">
+            <summary>
+            The <see cref="P:D2Packets.BnetServer.RealmLogonResponse.Cookie"/> from <see cref="T:D2Packets.BnetServer.RealmLogonResponse"/>.
+            <para>This is the first DWORD of <see cref="P:D2Packets.RealmClient.RealmStartupRequest.StartupData"/>.</para>
+            <list type="bullet">
+            <item>Offset: 3</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.RealmClient.RealmStartupRequest.StartupData">
+            <summary>
+            The data provided by Bnet server in <see cref="T:D2Packets.BnetServer.RealmLogonResponse"/>.
+            <para>This contains the <see cref="P:D2Packets.RealmClient.RealmStartupRequest.Cookie"/> at the start.</para>
+            <list type="bullet">
+            <item>Offset: 3</item>
+            <item>Length: 64 bytes</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.CharacterCreationRequest">
+            <summary>
+            Realm Client Packet 0x02 - Character Creation Request
+            <para>Request creation of a new realm character in the current account.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CharacterCreationResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.CreateGameRequest">
+            <summary>
+            Realm Client Packet 0x03 - Create Game Request
+            <para>Request creating a new game to the server. This will not automatically join the game.</para>
+            <para>The game name and password are capitalized before being sent (e.g. "aBc DeF" becomes "Abc Def".)</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CreateGameResponse"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.RealmClient.CreateGameRequest.RequestID">
+            <summary>
+            Starts at 2 at first game and increments by 2 for each consecutive game creation.
+            </summary>
+        </member>
+        <member name="P:D2Packets.RealmClient.CreateGameRequest.Unknown1">
+            <summary>
+            Possibly unused (0)
+            </summary>
+        </member>
+        <member name="P:D2Packets.RealmClient.CreateGameRequest.Unknown2">
+            <summary>
+            Possibly unused (0)
+            </summary>
+        </member>
+        <member name="P:D2Packets.RealmClient.CreateGameRequest.Unknown3">
+            <summary>
+            Always 1 ?
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.JoinGameRequest">
+            <summary>
+            Realm Client Packet 0x04 - Join Game Request
+            <para>Requests joining a game - must be sent after successful game creation.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.JoinGameResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.GameListRequest">
+            <summary>
+            Realm Client Packet 0x05 - Game List Request
+            <para>Request a list of available games.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.GameList"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.RealmClient.GameListRequest.Unknown1">
+            <summary>
+            Player / session ID ?
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.GameInfoRequest">
+            <summary>
+            Realm Client Packet 0x06 - Game Info Request
+            <para>Requests information about a game.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.GameInfo"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.CharacterLogonRequest">
+            <summary>
+            Realm Client Packet 0x07 - Character Logon Request
+            <para>Requests picking a character (success bringing you to lobby...)</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CharacterLogonResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.CharacterDeletionRequest">
+            <summary>
+            Realm Client Packet 0x0A - Character Deletion Request
+            <para>Request deletion of a realm character in the current account.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CharacterDeletionResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.MessageOfTheDayRequest">
+            <summary>
+            Realm Client Packet 0x12 - Message Of The Day Request
+            <para>Sent after logon to request the message to display in lobby.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.MessageOfTheDay"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.CancelGameCreation">
+            <summary>
+            Realm Client Packet 0x13 - Cancel Game Creation
+            <para>Cancels a currently pending game creation.</para>
+            <para>Note: pressing the cancel button after the game was created and client attempts to join won't trigger this packet.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmClient.CharacterUpgradeRequest">
+            <summary>
+            Realm Client Packet 0x18 - Character Upgrade Request
+            <para>Requests upgrading a character from classic to expansion.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CharacterUpgradeResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmClient.CharacterListRequest">
+            <summary>
+            Realm Client Packet 0x19 - Character List Request
+            <para>Request a list of characters for the current account.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.RealmServer.CharacterList"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.GameClient.GCPacket">
+            <summary>
+            Base class for D2GS Game Client -> Server Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.TradeType">
+            <summary>
+            Trade action type.
+            <para>Used by <see cref="T:D2Packets.GameClient.BuyItem"/> and <see cref="T:D2Packets.GameClient.SellItem"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.GoToLocation">
+            <summary>
+            Game Client Packet Wrapper - Go To Location
+            <para>Wrapper for <see cref="T:D2Packets.GameClient.WalkToLocation"/> and <see cref="T:D2Packets.GameClient.RunToLocation"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.WalkToLocation">
+            <summary>
+            Game Client Packet 0x01 - Walk To Location
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RunToLocation">
+            <summary>
+            Game Client Packet 0x03 - Run To Location
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.GoToTarget">
+            <summary>
+            Game Client Packet Wrapper - Go To Target
+            <para>Wrapper for <see cref="T:D2Packets.GameClient.WalkToTarget"/> and <see cref="T:D2Packets.GameClient.RunToTarget"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.WalkToTarget">
+            <summary>
+            Game Client Packet 0x02 - Walk To Target
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RunToTarget">
+            <summary>
+            Game Client Packet 0x04 - Run To Target
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastLeftSkill">
+            <summary>
+            Game Client Packet 0x05 - Cast Left Skill
+            <para>Casts the currently set left hand skill on a target location.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastLeftSkillOnTarget">
+            <summary>
+            Game Client Packet 0x06 - Cast Left Skill On Target
+            <para>Casts the currently set left hand skill on a target unit.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastLeftSkillOnTargetStopped">
+            <summary>
+            Game Client Packet 0x07 - Cast Left Skill On Target Stopped
+            <para>Casts the currently set left hand skill on a target unit.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastLeftSkill">
+            <summary>
+            Game Client Packet 0x08 - Recast Left Skill
+            <para>Recasts the currently set left hand skill on a target location when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastLeftSkillOnTarget">
+            <summary>
+            Game Client Packet 0x09 - Recast Left Skill On Target
+            <para>Recasts the currently set left hand skill on a target unit when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastLeftSkillOnTargetStopped">
+            <summary>
+            Game Client Packet 0x0A - Recast Left Skill On Target Stopped
+            <para>Recasts the currently set left hand skill on a target unit when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastRightSkill">
+            <summary>
+            Game Client Packet 0x0C - Cast Right Skill
+            <para>Casts the currently set right hand skill on a target location.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastRightSkillOnTarget">
+            <summary>
+            Game Client Packet 0x0D - Cast Right Skill On Target
+            <para>Casts the currently set right hand skill on a target unit.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CastRightSkillOnTargetStopped">
+            <summary>
+            Game Client Packet 0x0E - Cast Right Skill On Target Stopped
+            <para>Casts the currently set right hand skill on a target unit.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastRightSkill">
+            <summary>
+            Game Client Packet 0x0F - Recast Right Skill
+            <para>Recasts the currently set right hand skill on a target location when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastRightSkillOnTarget">
+            <summary>
+            Game Client Packet 0x10 - Recast Right Skill On Target
+            <para>Recasts the currently set right hand skill on a target unit when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RecastRightSkillOnTargetStopped">
+            <summary>
+            Game Client Packet 0x11 - Recast Right Skill On Target Stopped
+            <para>Recasts the currently set right hand skill on a target unit when spamming.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.UnitInteract">
+            <summary>
+            Game Client Packet 0x13 - Unit Interact
+            <para>Try to interact with a unit. Result will vary depending on unit type...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SendOverheadMessage">
+            <summary>
+            Game Client Packet 0x14 - Send Overhead Message
+            <para>Sends a message to be displayed over the character.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameClient.SendOverheadMessage.Unknown1">
+            <summary>
+            Probably the MessageType to match other message packets... 
+            unused since not needed for single message type packet.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameClient.SendOverheadMessage.UnknownEnd">
+            <summary>
+            Probably just the same unused reserved nullstrings as below...
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SendMessage">
+            <summary>
+            Game Client Packet 0x15 - Send Message
+            <para>Send a public game message or whisper to a player.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.PickItem">
+            <summary>
+            Game Client Packet 0x16 - PickItem
+            <para>Pick up an item from the ground.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.DropItem">
+            <summary>
+            Game Client Packet 0x17 - DropItem
+            <para>Drop the cursor item to the ground.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ItemContainerGC">
+            <summary>
+            Item conainers as used by <see cref="T:D2Packets.GameClient.DropItemToContainer"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.DropItemToContainer">
+            <summary>
+            Game Client Packet 0x18 - Drop Item To Container
+            <para>Drop an item from cursor into a container.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.PickItemFromContainer">
+            <summary>
+            Game Client Packet 0x19 - Pick Item From Container
+            <para>Remove an item from a container and place it on cursor.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.EquipItem">
+            <summary>
+            Game Client Packet 0x1A - Equip Item
+            <para>Equip an item on the cursor to a specified body location.</para>
+            <para>Item must be on cursor, of right type for location and location must be empty.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SwapEquippedItem">
+            <summary>
+            Game Client Packet 0x1D - Swap Equipped Item
+            <para>Swaps an equipped item with another one on cursor.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.UnequipItem">
+            <summary>
+            Game Client Packet 0x1C - Unequip Item
+            <para>Removes an equipped item from body and places on the cursor.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SwapContainerItem">
+            <summary>
+            Game Client Packet 0x1F - Swap Container Item
+            <para>Swap cursor (<see cref="P:D2Packets.GameClient.SwapContainerItem.SubjectUID"/>) 
+            item with another item in a container (<see cref="P:D2Packets.GameClient.SwapContainerItem.ObjectUID"/>).</para>
+            <para>Don't send this packet to replace items in trade as trade doesn't support item replacement.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.UseContainerItem">
+            <summary>
+            Game Client Packet 0x20 - Use Container Item
+            <para>Use an item (drink potion, use tome, open cube, etc.) in inventory.</para>
+            <para><see cref="P:D2Packets.GameClient.UseContainerItem.MeX"/> and <see cref="P:D2Packets.GameClient.UseContainerItem.MeY"/> 
+            are your standing location for the area you are in, not item position in inventory !</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.StackItems">
+            <summary>
+            Game Client Packet 0x21 - Stack Items
+            <para>Stack cursor (subject) item into another item (object).</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.AddBeltItem">
+            <summary>
+            Game Client Packet 0x23 - Add Belt Item
+            <para>Place the item on cursor into specified position in belt. Must be a potion or scroll...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RemoveBeltItem">
+            <summary>
+            Game Client Packet 0x24 - Remove Belt Item
+            <para>Remove an item (potion or scroll) from belt and place it on cursor.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SwapBeltItem">
+            <summary>
+            Game Client Packet 0x25 - Swap Belt Item
+            <para>Place cursor item belt and replace it with the specified item in it's location. </para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.UseBeltItem">
+            <summary>
+            Game Client Packet 0x26 - Use Belt Item
+            <para>Consume an item (potion or scroll) in belt.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.IdentifyItem">
+            <summary>
+            Game Client Packet 0x27 - Identify Item
+            <para>Use an identify scroll on an item.</para>
+            <para>If already indentified, id cursor is canceled and scroll is not used.</para>
+            <para>If not clicking on an item, UID is that of scroll and action is canceled.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.EmbedItem">
+            <summary>
+            Game Client Packet 0x29 - Embed Item
+            <para>Put an item into a container item (e.g. scroll in tome.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ItemToCube">
+            <summary>
+            Game Client Packet 0x2A - Item To Cube
+            <para>Drop an item in the Horadric cube by clicking on it with the item on cursor.</para>
+            <para>Note that a regular ItemToContainer packet is used if the item is dropped at a location in the cube and not on it.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.TownFolkInteract">
+            <summary>
+            Game Client Packet 0x2F - Town Folk Interact
+            <para>Actual interact request sent after NPC is in interaction range.</para>
+            <para>A regular UnitInteract is sometimes(?) also sent first...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.TownFolkCancelInteraction">
+            <summary>
+            Game Client Packet 0x30 - Town Folk Cancel Interaction
+            <para>Close interact menu or trade etc. screen and break interact with town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.DisplayQuestMessage">
+            <summary>
+            Game Client Packet 0x31 - Display Quest Message
+            <para>Notifies D2GS that a quest message was displayed so it can update the quest log.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.BuyFlags">
+            <summary>
+            Extra action flags used by <see cref="T:D2Packets.GameClient.BuyItem"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.BuyItem">
+            <summary>
+            Game Client Packet 0x32 - Buy Item
+            <para>Buy an item from a town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SellItem">
+            <summary>
+            Game Client Packet 0x33 - Sell Item
+            <para>Sell an item to a town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CainIdentifyItems">
+            <summary>
+            Game Client Packet 0x34 - Cain Identify Items
+            <para>Select the Identify Items option when interacted with Cain.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RepairType">
+            <summary>
+            Type of repair action used by <see cref="T:D2Packets.GameClient.TownFolkRepair"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.TownFolkRepair">
+            <summary>
+            Game Client Packet 0x35 - Town Folk Repair
+            <para>Ask a blacksmith to repair one or all item(s).</para>
+            </summary>
+        </member>
+        <member name="M:D2Packets.GameClient.TownFolkRepair.Build(System.UInt32)">
+            <summary>
+            Builds a repair all items packet for a town folk NPC.
+            </summary>
+            <param name="dealerUID">The UID of the NPC to repair at.</param>
+        </member>
+        <member name="T:D2Packets.GameClient.HireMercenary">
+            <summary>
+            Game Client Packet 0x36 - Hire Mercenary
+            <para>Hire a mercenary from a town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.IdentifyGambleItem">
+            <summary>
+            Game Client Packet 0x37 - Identify Gamble Item
+            <para>Identify a gambled item after you bought it.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.TownFolkMenuSelect">
+            <summary>
+            Game Client Packet 0x38 - Town Folk Menu Select
+            <para>Choose an menu item / action type once interacted with the town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.IncrementAttribute">
+            <summary>
+            Game Client Packet 0x3A - Increment Attribute
+            <para>Raise an attribute by one point.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.IncrementSkill">
+            <summary>
+            Game Client Packet 0x3B - Increment Skill
+            <para>Raise a skill by one point.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SelectSkill">
+            <summary>
+            Game Client Packet 0x3C - SelectSkill
+            <para>Sets a given skill as the active one for specified hand.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.HoverUnit">
+            <summary>
+            Game Client Packet 0x3D - Hover Unit
+            <para>Notifies the server client want's to be informed of special mode changes for unit.</para>
+            <para>This is used to update doors' text to "Blocked Door" when a unit passes over it...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SendCharacterSpeech">
+            <summary>
+            Game Client Packet 0x3F - Send Character Speech
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RequestQuestLog">
+            <summary>
+            Game Client Packet 0x40 - Request Quest Log
+            <para>Request the character's quest log for the current act.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.Respawn">
+            <summary>
+            Game Client Packet 0x41 - Respawn
+            <para>Restart in town (when dead.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.WaypointInteract">
+            <summary>
+            Game Client Packet 0x49 - Waypoint Interact
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.RequestReassign">
+            <summary>
+            Game Client Packet 0x4B - Request Reassign
+            <para>Requests a PlayerReassign (GS 0x15) from server.</para>
+            <para>Sent when the client is out of sync to request the current position on server.</para>
+            <para>This is also used to bring pets along when using a waypoint or portal, with a NPC UnitType.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameClient.RequestReassign.UnitType">
+            <summary>
+            UnitType.Player if requesting player position or UnitType.NPC for his pets.
+            Offset: 1, Length: 4
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameClient.RequestReassign.MeUID">
+            <summary>
+            This is always the player's UID, regardless of the UnitType requested.
+            Offset: 5, Length: 4
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ClickButton">
+            <summary>
+            Game Client Packet 0x4F - Click Button
+            <para>Click on a UI button.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.DropGold">
+            <summary>
+            Game Client Packet 0x50 - Drop Gold
+            <para>Remove gold from inventory and drop it on the ground.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SetSkillHotkey">
+            <summary>
+            Game Client Packet 0x51 - Set Skill Hotkey
+            <para>Assigns or unassigns a skill to a hotkey.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.CloseQuest">
+            <summary>
+            Game Client Packet 0x58 - Close Quest
+            <para>Notifies D2GS that a quest's completion animation in pannel was viewed.</para>
+            <para>Sent when the quest pannel is opened.</para>
+            </summary>
+            <remarks>
+            Length: 3
+            </remarks>
+        </member>
+        <member name="P:D2Packets.GameClient.CloseQuest.Quest">
+            <summary>
+            The id of the quest.
+            <list type="bullet">
+            <item>Offset: 1</item>
+            <item>Length: WORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.GoToTownFolk">
+            <summary>
+            Game Client Packet 0x59 - Go To Town Folk
+            <para>Notify the server of intention to interact with a town folk.</para>
+            <para>First pack sent when clicking on a town folk, before running / walking toward it before actual interaction.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.PlayerRelationType">
+            <summary>
+            Player relation types used by <see cref="T:D2Packets.GameClient.SetPlayerRelation"/>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SetPlayerRelation">
+            <summary>
+            Game Client Packet 0x5D - Set Player Relation
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.PartyAction">
+            <summary>
+            Party action types used by <see cref="T:D2Packets.GameClient.PartyRequest"/>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.PartyRequest">
+            <summary>
+            Game Client Packet 0x5E - Party Request
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.UpdatePosition">
+            <summary>
+            Game Client Packet 0x5F - Update Position
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.SwitchWeapons">
+            <summary>
+            Game Client Packet 0x60 - Switch Weapons
+            <para>Toogle the active weapon tab.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ChangeMercEquipment">
+            <summary>
+            Game Client Packet 0x61 - Change Merc Equipment
+            <para>Equip or unequip merc item.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ResurrectMerc">
+            <summary>
+            Game Client Packet 0x62 - Resurrect Merc
+            <para>Resurrect your current mercenary at a slaver town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.InventoryItemToBelt">
+            <summary>
+            Game Client Packet 0x63 - Inventory Item To Belt
+            <para>Move an item (potion or scroll) directly from inventory to belt.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.WardenResponse">
+            <summary>
+            Game Client Packet 0x66 - Warden Response
+            <para>Sent in reply to GS 0xAE; Warden check's response.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.GameLogonRequest">
+            <summary>
+            Game Client Packet 0x68 - Game Logon Request
+            <para>This is the first packet sent to D2GS, using info from RS (0x04 - JoinGame)</para>
+            <para>This is the main packet for the D2GS logon where you need to send your char Information to the game server.
+            This packet must be 37 bytes long, so if your char name is not 15 letters in lengh, you will need to add the correct number of bytes after your Char name.
+            Your char name should be inbedded to the start of the following hex strand:
+            Code: 00000000B5D6779A81B36F4B00000000
+            The strand must be 16 bytes long and contain your character name with a null terminator.
+            The server will not answer this packet if it is not 37 bytes long, doesn't contain the D2GS hash or D2GS token or doesn't contain your char name.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.ExitGame">
+            <summary>
+            Game Client Packet 0x69 - Exit Game
+            <para>Notify D2GS that you are leaving the game.</para>
+            <para>NOTE: Upon receiving this packet, D2 will send a WM_CLOSE message to it's main window.
+            If the "ExitGame" flag is not set first it will not just the leave the game, but close Diablo II !</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.EnterGame">
+            <summary>
+            Game Client Packet 0x6B - Enter Game
+            <para>Sent after successful logon. Server will then send all the game's information.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameClient.Ping">
+            <summary>
+            Game Client Packet 0x6D - Ping
+            <para>Should be sent every 5 to 7 seconds to stop from dropping from the game.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameClient.Ping.Unknown5">
+            <summary>
+            Should be a null value on joining the game server, and after that, a non-static value is used.
+            <para>Varying DWORD between 0x30 and 0x50 seems to allow connection to be maintained...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.D2Packets.RealmInfo">
+            <summary>
+            Structure containing information about a single Realm (e.g. USEast).
+            Used by <see cref="T:D2Packets.BnetServer.QueryRealmsResponse"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.BSPacket">
+            <summary>
+            Base class for Battle.net Server -> Client Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.KeepAlive">
+            <summary>
+            Bnet Server Packet 0x00 - Keep Alive
+            <para>Keeps the connection alive.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.EnterChatResponse">
+            <summary>
+            Bnet Server Packet 0x0A - Enter Chat Response
+            <para>Returns a unique username and stat string in response to EnterChat.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.EnterChatRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.ChannelList">
+            <summary>
+            Bnet Server Packet 0x0B - Channel List
+            <para>Provides a listing of available channels.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.ChannelListRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.ChatEventType">
+            <summary>
+            Chat event type.
+            <para>Used by <see cref="T:D2Packets.BnetServer.ChatEvent"/>.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ChannelUser">
+            <summary>
+            Received for every user when you join a channel.
+            <para>Also sent when a user requires an update to his statstring.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ChannelJoin">
+            <summary>
+            Someone joins the channel you're currently in.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ChannelLeave">
+            <summary>
+            Someone leaves the channel you're currently in.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ReceiveWhisper">
+            <summary>
+            Received whisper message.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ChannelMessage">
+            <summary>
+            Received when someone talks in the channel you're currently in.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ServerBroadcast">
+            <summary>
+            Server information broadcast.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.ChannelInfo">
+            <summary>
+            Received when you join a channel (channel's name and flags.)
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.UserFlags">
+            <summary>
+            Update a user's flags.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.WhisperSent">
+            <summary>
+            Sent whisper message receipt.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.ChatEventType.Broadcast">
+            <summary>
+            Account is the one you are logged on. Used to be the BattleNetAdministrator who sent the message.
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.ChatEvent">
+            <summary>
+            Bnet Server Packet 0x0F - Chat Event
+            <para>Various chat related events (channel join, leave, message, whisper, etc.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.AdInfo">
+            <summary>
+            Bnet Server Packet 0x15 - Ad Info
+            <para>Contains the information required to download and display an ad.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.AdInfoRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetPing">
+            <summary>
+            Bnet Server Packet 0x25 - Bnet Ping
+            <para>Sends a timestamp to client to be returned in other to calculate ping.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetClient.BnetPong"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.FileTimeInfo">
+            <summary>
+            Bnet Server Packet 0x33 - File Time Info
+            <para>Contains the last modified timestamp of a file.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.FileTimeRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetLogonResult">
+            <summary>
+            Result of a Bnet logon request.
+            <para>Used by <see cref="T:D2Packets.BnetServer.BnetLogonResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetLogonResponse">
+            <summary>
+            Bnet Server Packet 0x3A - Bnet Logon Response
+            <para>Notifies client of a Bnet logon request result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.BnetLogonRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.RealmLogonResult">
+            <summary>
+            Error code of a realm connection startup attempt.
+            <para>Used by <see cref="T:D2Packets.BnetServer.RealmLogonResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.RealmLogonResponse">
+            <summary>
+            Bnet Server Packet 0x3E - Realm Logon Response
+            <para>Supplies the data necessary to connect to a Realm server.</para>
+            <para>If the request is not successful, only <see cref="P:D2Packets.BnetServer.RealmLogonResponse.Cookie"/> and <see cref="P:D2Packets.BnetServer.RealmLogonResponse.Result"/> will be set.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.RealmLogonRequest"/>
+            </remarks>
+        </member>
+        <member name="M:D2Packets.BnetServer.RealmLogonResponse.CompareStartupData(D2Packets.RealmClient.RealmStartupRequest)">
+            <summary>
+            Compares the <see cref="P:D2Packets.BnetServer.RealmLogonResponse.StartupData"/> contained in this packet with the one in specified packet.
+            </summary>
+            <param name="realmStartup">The packet to compare with.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="M:D2Packets.BnetServer.RealmLogonResponse.CompareStartupData(System.Byte[])">
+            <summary>
+            Compares the <see cref="P:D2Packets.BnetServer.RealmLogonResponse.StartupData"/> contained in this packet with the provided data.
+            </summary>
+            <param name="bytes">Byte array containing the data to compare with.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="M:D2Packets.BnetServer.RealmLogonResponse.CompareStartupData(System.Byte[],System.Int32)">
+            <summary>
+            Compares the <see cref="P:D2Packets.BnetServer.RealmLogonResponse.StartupData"/> contained in this packet with the provided data.
+            </summary>
+            <param name="bytes">Byte array containing the data to compare with.</param>
+            <param name="offset">Offset in <paramref name="bytes"/> to start reading data at.</param>
+            <returns>true if the data is the same, false otherwise.</returns>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.Result">
+            <summary>
+            If the logon is not successful, this is the error code from packet.
+            <para>Otherwise, it is a dummy value: RealmLogonResult.Success.</para>
+            <list type="bullet">
+            <item>Offset: 8</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.RealmServerIP">
+            <summary>
+            The IP of the Realm server to connect to, or null if the request fails.
+            <list type="bullet">
+            <item>Offset: 20</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.RealmServerPort">
+            <summary>
+            The IP of the Realm server to connect to, or -1 if the request fails.
+            <list type="bullet">
+            <item>Offset: 24</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.Username">
+            <summary>
+            Battle.net unique username. This is the account name plus #X if it conflicts with someone else's.
+            <list type="bullet">
+            <item>Offset: 76</item>
+            <item>Length: (null terminated string)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.Cookie">
+            <summary>
+            The <see cref="P:D2Packets.BnetClient.RealmLogonRequest.Cookie"/> of the requesting <see cref="T:D2Packets.BnetClient.RealmLogonRequest"/>.
+            <para>This is the first DWORD of <see cref="P:D2Packets.BnetServer.RealmLogonResponse.StartupData"/>.</para>
+            <list type="bullet">
+            <item>Offset: 4</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.Unknown">
+            <summary>
+            Use is unknown.
+            <list type="bullet">
+            <item>Offset: 77 + <see cref="P:D2Packets.BnetServer.RealmLogonResponse.Username"/>.Length</item>
+            <item>Length: (null terminated string)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.BnetServer.RealmLogonResponse.StartupData">
+            <summary>
+            The data to send to Realm in <see cref="T:D2Packets.RealmClient.RealmStartupRequest"/>.
+            <para>This contains the <see cref="P:D2Packets.BnetServer.RealmLogonResponse.Cookie"/> at the start.</para>
+            <para>Postion: bytes 4-19 and 28-75</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.QueryRealmsResponse">
+            <summary>
+            Bnet Server Packet 0x40 - Query Realms Response
+            <para>Contains a list of available realms.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.QueryRealms"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.BnetServer.QueryRealmsResponse.Unknown">
+            <summary>
+            Typically 0...
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.NewsEntry">
+            <summary>
+            Structure containing a single Battle.net news entry.
+            <para>Used by <see cref="T:D2Packets.BnetServer.NewsInfo"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.NewsInfo">
+            <summary>
+            Bnet Server Packet 0x46 - News Info
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.NewsInfoRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.ExtraWorkInfo">
+            <summary>
+            Bnet Server Packet 0x4A - Extra Work Info
+            <para>Specifies the "ExtraWork" file that the client should download / run.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetClient.ExtraWorkResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.RequiredExtraWorkInfo">
+            <summary>
+            Bnet Server Packet 0x4C - Required Extra Work Info
+            <para>Specifies the "ExtraWork" file that the client must download / run.</para>
+            </summary>
+            <remarks>
+            Response: <see cref="T:D2Packets.BnetClient.ExtraWorkResponse"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetConnectionResponse">
+            <summary>
+            Bnet Server Packet 0x50 - Bnet Connection Response
+            <para>Response to Bnet Connection Request.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.BnetConnectionRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetAuthResult">
+            <summary>
+            Result of a Bnet connection authentication.
+            <para>Used by <see cref="T:D2Packets.BnetServer.BnetAuthResponse"/>.</para>
+            <para>If value is the version code supplied in <see cref="T:D2Packets.BnetClient.BnetAuthRequest"/>, the code is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.BnetAuthResult.Success">
+            <summary>
+            Passed challenge sucessfully.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.BnetAuthResult.OldVersion">
+            <summary>
+            Additional info field supplies patch MPQ filename.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.BnetAuthResult.BuggedVersion">
+            <summary>
+            Game must be downgraded. Additional info field supplies patch MPQ filename.
+            </summary>
+        </member>
+        <member name="F:D2Packets.BnetServer.BnetAuthResult.CDKeyInUse">
+            <summary>
+            Additional info field supplies name of user.
+            </summary>
+        </member>
+        <member name="T:D2Packets.BnetServer.BnetAuthResponse">
+            <summary>
+            Bnet Server Packet 0x51 - Bnet Auth Response
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.BnetClient.BnetAuthRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.RSPacket">
+            <summary>
+            Base class for Realm Server -> Client Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.RealmCharacterActionResult">
+            <summary>
+            Result of various realm actions on a character.
+            <para>Used by <see cref="T:D2Packets.RealmServer.CharacterCreationResponse"/>, 
+            <see cref="T:D2Packets.RealmServer.CharacterLogonResponse"/>, 
+            <see cref="T:D2Packets.RealmServer.CharacterDeletionResponse"/> and 
+            <see cref="T:D2Packets.RealmServer.CharacterUpgradeResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.Success">
+            <summary>
+            The action was completed successfully.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.CharacterOverlap">
+            <summary>
+            Character already exists or account already has maximum number of characters (8).
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.InvalidCharacterName">
+            <summary>
+            Character name is longer than 15 characters or contains illegal characters.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.CharacterNotFound">
+            <summary>
+            Invalid character name specified for action.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.CharacterDoesNotExist">
+            <summary>
+            Invalid character name specified for deletion.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.Failed">
+            <summary>
+            The action (logon, upgrade, etc.) has failed for an unspecified reason.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.CharacterExpired">
+            <summary>
+            All actions except delete are invalid on an expired character.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmCharacterActionResult.CharacterAlreadyUpgraded">
+            <summary>
+            When trying to upgrade an expansion character.
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.RealmStartupResult">
+            <summary>
+            Result of a realm connection startup.
+            <para>Used by <see cref="T:D2Packets.RealmServer.RealmStartupResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.RealmStartupResult.TemporaryIPBan">
+            <summary>
+            "Your connection has been temporarily restricted from this realm.
+            Please try to log in at another time."
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.RealmStartupResponse">
+            <summary>
+            Realm Server Packet 0x01 - Realm Startup Response
+            <para>Notifies client of the connection startup result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.RealmStartupRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.CharacterCreationResponse">
+            <summary>
+            Realm Server Packet 0x02 - Character Creation Response
+            <para>Notifies client of the character creation result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CharacterCreationRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.CreateGameResult">
+            <summary>
+            Result of a game creation.
+            <para>Used by <see cref="T:D2Packets.RealmServer.CreateGameResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.CreateGameResponse">
+            <summary>
+            Realm Server Packet 0x03 - Create Game Response
+            <para>Notifies client of the game creation result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CreateGameRequest"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.RealmServer.CreateGameResponse.Unknown">
+            <summary>
+            If game creation succeeded, this is a nonzero value whose meaning is unknown.
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.JoinGameResult">
+            <summary>
+            Result of a game join request.
+            <para>Used by <see cref="T:D2Packets.RealmServer.JoinGameResponse"/>.</para>
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.Success">
+            <summary>
+            Terminate the connection with the Realm Server and initiate with Game Server.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.LevelRequirementsNotMet">
+            <summary>
+            You do not meet the level requirements for this game.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.DeadHardcoreCharacter">
+            <summary>
+            A dead hardcore character cannot join a game.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.UnableToJoinHardcoreGame">
+            <summary>
+            A non-hardcore character cannot join a game created by a hardcore character.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.UnableToJoinExpansionGame">
+            <summary>
+            A non-expansion character cannot join a game created by an expansion character.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.UnableToJoinClassicGame">
+            <summary>
+            An expansion character cannot join a game created by a non-expansion character.
+            </summary>
+        </member>
+        <member name="F:D2Packets.RealmServer.JoinGameResult.UnableToJoinLadderGame">
+            <summary>
+            A non-ladder character cannot join a game created by a Ladder character.
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.JoinGameResponse">
+            <summary>
+            Realm Server Packet 0x04 - Join Game Response
+            <para>Notifies client of the join game result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.JoinGameRequest"/>
+            </remarks>
+        </member>
+        <member name="F:D2Packets.RealmServer.GameFlags.Valid">
+            <summary>
+            If not present, the packet contains no useful information.
+            <para>For <see cref="T:D2Packets.RealmServer.GameList"/>, this means the packet marks the end of listing.</para>
+            <para>For <see cref="T:D2Packets.RealmServer.GameInfo"/>, the game was destroyed since listed !?</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.GameList">
+            <summary>
+            Realm Server Packet 0x05 - Game List
+            <para>Adds an available game to list (sent once for each game.)</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.GameListRequest"/>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.RealmServer.GameList.Index">
+            <summary>
+            The game's index on the server.
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.GameInfo">
+            <summary>
+            Realm Server Packet 0x06 - Game Info
+            <para>Provides information about a particular game.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.GameInfoRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.CharacterLogonResponse">
+            <summary>
+            Realm Server Packet 0x07 - Character Logon Response
+            <para>Notifies client of the character logon result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CharacterLogonRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.CharacterDeletionResponse">
+            <summary>
+            Realm Server Packet 0x0A - Character Deletion Response
+            <para>Notifies client of the character deletion result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CharacterDeletionRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.MessageOfTheDay">
+            <summary>
+            Realm Server Packet 0x12 - Message of the Day (more like message of the year ^^)
+            <para>Notifies client of the message to display when in lobby.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.MessageOfTheDayRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.GameCreationQueue">
+            <summary>
+            Realm Server Packet 0x14 - Game Creation Queue
+            <para>Initialize waiting queue or update queue position.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.RealmServer.CharacterUpgradeResponse">
+            <summary>
+            Realm Server Packet 0x18 - Character Upgrade Response
+            <para>Notifies client of the character upgrade result.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CharacterUpgradeRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.RealmServer.CharacterList">
+            <summary>
+            Realm Server Packet 0x19 - Character List
+            <para>Provides a list of characters for the current account.</para>
+            </summary>
+            <remarks>
+            Response to: <see cref="T:D2Packets.RealmClient.CharacterListRequest"/>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.GameServer.GSPacket">
+            <summary>
+            Base class for D2GS Game Server -> Client Packets
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameLoading">
+            <summary>
+            Game Server Packet 0x00 - Game Loading
+            <para>Sent during game logon sequence to let client know the server is processing the request.</para>
+            <para>The join can still fail after this...</para>
+            </summary>
+            <remarks>
+            Part of logon sequence
+            <para>Previous packet: <see cref="T:D2Packets.GameServer.GameLogonReceipt"/></para>
+            <para>Next packet: <see cref="T:D2Packets.GameServer.GameLogonSuccess"/></para>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.GameServer.GameLogonReceipt">
+            <summary>
+            Game Server Packet 0x01 - Game Logon Receipt
+            <para>Acknowledgement of a valid game logon (join) request.</para>
+            <para>The join can still fail after this...</para>
+            </summary>
+            <remarks>
+            Part of logon sequence
+            <para>Response to: <see cref="T:D2Packets.GameClient.GameLogonRequest"/></para>
+            <para>Next packet: <see cref="T:D2Packets.GameServer.GameLoading"/></para>
+            </remarks>
+        </member>
+        <member name="P:D2Packets.GameServer.GameLogonReceipt.Unknown2">
+            <summary>
+            A version of some kind?
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameLogonSuccess">
+            <summary>
+            Game Server Packet 0x02 - Game Logon Success
+            <para>Last packet of the logon sequence sent only if the game logon is successful.</para>
+            <para>If this packet is not received the connexion will be dropped.</para>
+            </summary>
+            <remarks>
+            Part of logon sequence
+            <para>Previous packet: <see cref="T:D2Packets.GameServer.GameLoading"/></para>
+            <para>Response: <see cref="T:D2Packets.GameClient.EnterGame"/></para>
+            </remarks>
+        </member>
+        <member name="T:D2Packets.GameServer.LoadAct">
+            <summary>
+            Game Server Packet 0x03 - Load Act
+            <para>Sent on game join or act change before map and game objects data.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.LoadDone">
+            <summary>
+            Game Server Packet 0x04 - Act Loaded
+            <para>Loading screen lights up...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UnloadDone">
+            <summary>
+            Game Server Packet 0x05 - Unload Done
+            <para>Sent before 0x03 on act change or after 0xB0 on game quit (but not if GS connection is interrupted.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameLogoutSuccess">
+            <summary>
+            Game Server Packet 0x06 - Game Logout Success
+            <para>Sent on game quit if the connection with Battle.net is not dropped.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MapAdd">
+            <summary>
+            Game Server Packet 0x07 - Map Add
+            <para>Marks a room as active.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MapRemove">
+            <summary>
+            Game Server Packet 0x08 - Map Remove
+            <para>Marks a room as inactive.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignWarp">
+            <summary>
+            Game Server Packet 0x09 - Assign Warp
+            <para>Notifies you that a door to another area has come into your range of view.</para>
+            <para>When getting within one screen of a warp, this this packet is sent again for the warp on the other side.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.RemoveGroundUnit">
+            <summary>
+            Game Server Packet 0x0A - Remove Ground Unit
+            <para>Usually because it's no longer in proximity or was picked up.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameHandshake">
+            <summary>
+            Game Server Packet 0x0B - Game Handshake
+            <para>Sent as part of game join data... UID will always be that of the receiving player.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCGetHit">
+            <summary>
+            Game Server Packet 0x0C - NPC Get Hit
+            <para>An NPC takes damage within your range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerStop">
+            <summary>
+            Game Server Packet 0x0D - Player Stop
+            <para>Sent every time another human player completed a walk / cast / etc action.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SetGameObjectMode">
+            <summary>
+            Game Server Packet 0x0E - Set Game Object Mode
+            <para>Updates the state of a game object (e.g. mark chest as open.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerMove">
+            <summary>
+            Game Server Packet 0x0F - Player Move
+            <para>Another player is moving to a new location in your range of view.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerMove.MovementType">
+            <summary>
+            TODO: make enum... 0x23=Run, 0x01=Walk, 0x20=knocked back ?
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerMoveToTarget">
+            <summary>
+            Game Server Packet 0x10 - Player Move To Target
+            <para>Another human player is moving towards another unit in your range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ReportKill">
+            <summary>
+            Game Server Packet 0x11 - Report Kill
+            <para>A player or his pet has killed something.</para>
+            <para>TEST: Only applies to collateral damage with multi shot attack (like chain lightning etc) ??
+            Seems it applies to Me kills too and UnitType is killer type not victim ??
+            Does it apply only to monster kills or PVP / merc death / etc ??</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerReassign">
+            <summary>
+            Game Server Packet 0x15 - Player Reassign
+            <para>Assigns a player or his pets at a location.</para>
+            <para>Sent when out of sync, joining game, teleporting or using a warp, portal or waypoint.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerReassign.UnitType">
+            <summary>
+            UnitType.Player if the information is about the player or UnitType.NPC if it's about his pets.
+            <list type="bullet">
+            <item>Offset: 1</item>
+            <item>Length: BYTE</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerReassign.UID">
+            <summary>
+            UID of the player, even if information is for his pets.
+            <list type="bullet">
+            <item>Offset: 2</item>
+            <item>Length: DWORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerReassign.X">
+            <summary>
+            <list type="bullet">
+            <item>Offset: 6</item>
+            <item>Length: WORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerReassign.Y">
+            <summary>
+            <list type="bullet">
+            <item>Offset: 8</item>
+            <item>Length: WORD</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerReassign.Reassign">
+            <summary>
+            If reassign is false then this packet should be ignored ??
+            <para>Actually seems to only control flashing...</para>
+            <list type="bullet">
+            <item>Offset: 10</item>
+            <item>Length: BYTE</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SmallGoldAdd">
+            <summary>
+            Game Server Packet 0x19 - Small Gold Add
+            <para>Notifies you that gold has been picked up or transferred from bank to inventory.</para>
+            <para>If amount is larger than 254, a <see cref="T:D2Packets.GameServer.AttributeNotification"/> of type Gold packet will be sent instead.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GainExperience">
+            <summary>
+            Game Server Packet Wrapper - Gain Experience
+            <para>Wrapper for <see cref="T:D2Packets.GameServer.ByteToExperience"/>, <see cref="T:D2Packets.GameServer.WordToExperience"/> and 
+            <see cref="T:D2Packets.GameServer.DWordToExperience"/>.</para>
+            <para>The first packet when joining game just notifies you of your current experience; don't add it to a cached value!</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ByteToExperience">
+            <summary>
+            Game Server Packet 0x1A - Byte To Experience
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.WordToExperience">
+            <summary>
+            Game Server Packet 0x1B - Word To Experience
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.DWordToExperience">
+            <summary>
+            Game Server Packet 0x1C - DWord To Experience
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AttributeNotification">
+            <summary>
+            Game Server Packet Wrapper - Attribute Notification
+            <para>Wrapper for <see cref="T:D2Packets.GameServer.AttributeByte"/>, <see cref="T:D2Packets.GameServer.AttributeWord"/> and 
+            <see cref="T:D2Packets.GameServer.AttributeDWord"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AttributeByte">
+            <summary>
+            Game Server Packet 0x1D - Attribute Byte
+            <para>Notifies you of base attributes with a rating no higher than a single byte.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AttributeWord">
+            <summary>
+            Game Server Packet 0x1E - Attribute Word
+            <para>Notifies you of base attributes with a rating no higher than two bytes.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AttributeDWord">
+            <summary>
+            Game Server Packet 0x1F - Attribute DWord
+            <para>Notifies you of base attributes with a rating no higher than four bytes.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerAttributeNotification">
+            <summary>
+            Game Server Packet 0x20 - Player Attribute Notification
+            <para>Notifies you of a player's stat.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateSkill">
+            <summary>
+            Game Server Packet 0x21 - Update Skill
+            <para>Sent when assigning a stat point to a skill or equipping an item proving a new skill.</para>
+            <para>Note that when equipping an item providing a new skill, the actual item's +skills bonuses will not be counted in the Bonus value 
+            (e.g. CtA skills bonus value will be 1 less than real value.)</para>
+            <para>Also this is not sent for charged skill which are handled differently or for skills you already have when equipping items.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.UpdateSkill.Unknown11">
+             <summary>
+            TODO: seems to have something to do with skill being a class skill / having a BaseLevel
+            It's always 0 for skills provided by CtA and was 6f for an actual skill point spent on my zon...
+             </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdatePlayerItemSkill">
+            <summary>
+            Game Server Packet 0x22 - Update Player Item Skill
+            <para>Updates availability and/or quantity of an item provided skill (id/tp...)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignSkill">
+            <summary>
+            Game Server Packet 0x23 - Assign Skill
+            <para>Sent in response to GameClient.SelectSkill when selecting a skill.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameMessage">
+            <summary>
+            Game Server Packet 0x26 - Game Chat
+            <para>Game message or whisper coming from in game player or player / shrine overhead message.</para>
+            <para>If a shrine displays a overhead message, the message will be a 4 character number specifying the message.</para>
+            </summary>
+        </member>
+        <member name="M:D2Packets.GameServer.GameMessage.#ctor(D2Data.GameMessageType,System.Byte,System.String,System.String)">
+            <summary>
+            Builds a game message or game whisper packet.
+            </summary>
+        </member>
+        <member name="M:D2Packets.GameServer.GameMessage.#ctor(D2Data.UnitType,System.UInt32,System.UInt16,System.String)">
+            <summary>
+            Builds an overhead message packet.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.GameMessage.PlayerName">
+            <summary>
+            Only set for game messages.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.GameMessage.UnitType">
+            <summary>
+            Only set for overhead messages.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.GameMessage.UID">
+            <summary>
+            Only set for overhead messages.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.GameMessage.Random">
+            <summary>
+            Only set for overhead messages.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCInfo">
+            <summary>
+            Game Server Packet 0x27 - NPC Info
+            <para>If UID is yours, this packet contains your mercenary's info.</para>
+            <para>Otherwise it's info of a town folk when interacting...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.QuestInfoUpdateType">
+            <summary>
+            Action that triggered sending a <see cref="T:D2Packets.GameServer.UpdateQuestInfo"/> packet.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateQuestInfo">
+            <summary>
+            Game Server Packet 0x28 - Update Quest Info
+            <para>Provides info about current quest states.</para>
+            <para>Sent when entering game, opening the quest panel and when interacting with a town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateGameQuestLog">
+            <summary>
+            Game Server Packet 0x29 - Update Game Quest Log
+            <para>Provides info about current quest states for the current game.</para>
+            <para>Sent when entering game and interacting with a town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.TransactionType">
+            <summary>
+            Type of transaction with a dealer used by <see cref="T:D2Packets.GameServer.TransactionComplete"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.TransactionComplete">
+            <summary>
+            Game Server Packet 0x2A - Transaction Complete
+            <para>Notifies that buying / selling an item or hiring a mercenary succeeded and assigns it a new UID.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlaySound">
+            <summary>
+            Game Server Packet 0x2C - Play Sound
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateItemStats">
+            <summary>
+            Game Server Packet 0x3E - Update Item Stats
+            <para>Updates an item's stat (Quantity when used, Durability when repaired...)</para>
+            <para>This packet is packed and should be looked at in bits...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UseStackableItem">
+            <summary>
+            Game Server Packet 0x3F - Use Stackable Item
+            <para>Use an item like a scroll, tome or potion.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerClearCursor">
+            <summary>
+            Game Server Packet 0x42 - Player Clear Cursor
+            <para>Player's cursor is emptied (e.g. when selling an item or give it to merc, 
+            but not when dropped to ground or container...)</para>
+            <para>Only sent for the receiving player for that purpose, but may have other uses too !?</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.Relator1">
+            <summary>
+            Game Server Packet 0x47 - Relator 1
+            <para>This is sent in relation to another packet, usually to provide the related unit's UID.</para>
+            <para>It's (almost?) always seen along with it's twin, <see cref="T:D2Packets.GameServer.Relator2"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.Relator2">
+            <summary>
+            Game Server Packet 0x48 - Relator 2
+            <para>This is sent in relation to another packet, usually to provide the related unit's UID.</para>
+            <para>It's (almost?) always seen along with it's twin, <see cref="T:D2Packets.GameServer.Relator1"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UnitUseSkillOnTarget">
+            <summary>
+            Game Server Packet 0x4C - Unit Use Skill On Target
+            <para>Another unit uses a skill on another target unit.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UnitUseSkill">
+            <summary>
+            Game Server Packet 0x4D - Unit Use Skill
+            <para>Another unit uses a skill not targeted at a unit.</para>
+            <para>Also a player activating a shrine (in witch case X / Y are null.)</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercForHire">
+            <summary>
+            Game Server Packet 0x4E - Merc For Hire
+            <para>Sent once for each merc available when interacting with a town folk selling mercs.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercForHireListStart">
+            <summary>
+            Game Server Packet 0x4F - Merc For Hire List Start
+            <para>Sent before the 0x4E packets when interacting with a slaver town folk.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignGameObject">
+            <summary>
+            Game Server Packet 0x51 - Assign Game Object
+            <para>Identifies objects when they come within range.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateQuestLog">
+            <summary>
+            Game Server Packet 0x52 - Update Quest Log
+            <para>Provides quest states for the quest panel display.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PartyRefresh">
+            <summary>
+            Game Server Packet 0x53 - Party Refresh
+            <para>You should receive this packet about once per minute, followed by a 0x47 and a 0x48 packet for each player with in your view.</para>
+            <para>The last DWORD seems to count up slowly and goes back to 00 at around 0xAA and the boolean BYTE should toggle between 0x00 and 0x80 for every packet.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PartyRefresh.SlotNumber">
+            <summary>
+            UNKNOWN: Not a party ID, not sure about it being some kind of player ID...
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PartyRefresh.Alternator">
+            <summary>
+            Alternates between 0x00 and 0x80 every packet.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PartyRefresh.Count">
+            <summary>
+            Increments by 8 every packet untill 0xAA after which it restarts at 0
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignPlayer">
+            <summary>
+            Game Server Packet 0x59 - Assign Player
+            <para>Notifies that a player is standing/coming into your range of view.</para>
+            <para>X and Y will be null if player is the receiving player.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.InformationMessageType">
+            <summary>
+            <see cref="T:D2Packets.GameServer.InformationMessage"/> packet types.
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.DroppedFromGame">
+            <summary>
+            Player Has Dropped Due To Time Out
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.JoinedGame">
+            <summary>
+            Player Has Joined The Game
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.LeftGame">
+            <summary>
+            Player Has Left The Game
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.NotInGame">
+            <summary>
+            Player Is Not In The Game (answer from @whisper command)
+            The server will send you this packet after you have used the @charname command to whisper a player that is not in the game.
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.PlayerSlain">
+            <summary>
+            A Player Has Been Slained
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.PlayerRelation">
+            <summary>
+            Player To Player Relations
+            The server will send you this packet to notify you of any changes that a D2 client would use to set up parties/hostile players/looting etc.
+            This packet is a very important packet when it comes to party relations and should be the packet you take note of when adding party support into your bot.
+            TEST: does this mean AboutPlayer etc are unreliable ??
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.InformationMessageType.SoJsSoldToMerchants">
+            <summary>
+            #### Stones of Jordan Sold to Merchants
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.InformationMessage">
+            <summary>
+            Game Server Packet 0x5A - Information Message
+            <para>Various player action and status related messages.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerInGame">
+            <summary>
+            Game Server Packet 0x5B - Player In Game
+            <para>Sent for each player in game (including you) on join.</para>
+            <para>It is also sent for every player that joins afterwards, followed by a 0x5A packet of type JoinedGame.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerLeaveGame">
+            <summary>
+            Game Server Packet 0x5C - Player Leave Game
+            <para>Sent when another player leaves the game.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.QuestItemState">
+            <summary>
+            Game Server Packet 0x5D - Quest Item State
+            <para>Sent when for quest related actions / mode changes.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.TownPortalState">
+            <summary>
+            Town Portal state flags used by <see cref="T:D2Packets.GameServer.PortalInfo"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PortalInfo">
+            <summary>
+            Game Server Packet 0x60 - Portal Info
+            <para>A portal comes into your range of view.</para>
+            <para>This packet should be linked to a GS packet 0x82 to assign an owner to the portal.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.OpenWaypoint">
+            <summary>
+            Game Server Packet 0x63 - Open Waypoint
+            <para>Notifies to open a waypoint's menu and which destinations are available.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerKillCount">
+            <summary>
+            Game Server Packet 0x65 - Player Kill Count
+            <para>Updates the player's kill count for the current game.</para>
+            <para>Sent on game join with value of 0 and after each kill.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.PlayerKillCount.UID">
+            <summary>
+            The UID of the player killer.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCMove">
+            <summary>
+            Game Server Packet 0x67 - NPC Move
+            <para>An NPC is moving to a new location in range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCMoveToTarget">
+            <summary>
+            Game Server Packet 0x68 - NPC Move To Target
+            <para>An NPC is moving to an object in range of view.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.NPCMoveToTarget.Unknown17">
+            <summary>
+            Found in alot of movement packets...
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SetNPCMode">
+            <summary>
+            Game Server Packet 0x69 - Set NPC Mode
+            <para>Sets an NPC's state when it comes into view or updates it afterwards.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCAction">
+            <summary>
+            Game Server Packet 0x6B - NPC Action
+            <para>A NPC does a action at a location.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.NPCAction.ActionType">
+            <summary>
+            A few action types:
+            <para>Warriv:    0x0C = has a strech</para>
+            <para>Charsi:    0x0C = Cast/Hit a wepon</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MonsterAttack">
+            <summary>
+            Game Server Packet 0x6C - Monster Attack
+            <para>A monster is attacking something in your range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCStop">
+            <summary>
+            Game Server Packet 0x6D - NPC Stop
+            <para>A NPC needs to be redrawn in a stand still state.</para>
+            <para>This is a very common packet when a computer player does any form of move, as afterwards
+            (for a split second in most case's) the computer player must be drawn in a stand still state.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerCorpseVisible">
+            <summary>
+            Game Server Packet 0x74 - Player Corpse Visibility
+            <para>Assigns a corpse UID to a slain player or remove a picked up corpse.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AboutPlayer">
+            <summary>
+            Game Server Packet 0x75 - About Player
+            <para>Refresh relationship information with a player.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerInSight">
+            <summary>
+            Game Server Packet 0x76 - Player In Sight
+            <para>Can be used to grab other players' UID when they come in your sight.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UpdateItemUI">
+            <summary>
+            Game Server Packet 0x77 - Update Item UI
+            <para>Notifies of item related UI changes (mostly trade related but also stash and cube).</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AcceptTrade">
+            <summary>
+            Game Server Packet 0x78 - Accept Trade
+            <para>Notifies you of who you are trading with after you have accepted a trade request.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GoldTrade">
+            <summary>
+            Game Server Packet 0x79 - Gold Trade
+            <para>Updates the amount of gold the trading partner is offering.</para>
+            <para>Will be sent with a value of 0 when entering trade and every time the the amount or trade status is changing.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SummonActionType">
+            <summary>
+            Summon action type used by <see cref="T:D2Packets.GameServer.SummonAction"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SummonAction">
+            <summary>
+            Game Server Packet 0x7A - Summon Action
+            <para>A player (un)summons a pet (includes merc.)</para>
+            <para>Sent even if the player is not on the same area / act as you, or in your party.</para>
+            <para>If action is UnsummonedOrLostSight, all fields other than the monster UID will be null.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignSkillHotkey">
+            <summary>
+            Game Server Packet 0x7B - Assign Skill Hotkey
+            <para>Sent on game join to assign each skill to a hotkey slot.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SpecialItemType">
+            <summary>
+            Item (or action?) type (flag?) used by <see cref="T:D2Packets.GameServer.UseSpecialItem"/>.
+            <para>TODO: Only type 4 TomeOrScroll is known and use is not clear...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.UseSpecialItem">
+            <summary>
+            Game Server Packet 0x7C - Use Special Item
+            <para>Only known when identify / portal scroll / tome is used.</para>
+            <para>This is sent twice, with an UpdateContainerItem in between...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ItemStateType">
+            <summary>
+            Item state set by <see cref="T:D2Packets.GameServer.UseSpecialItem"/>.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SetItemState">
+            <summary>
+            Game Server Packet 0x7D - Set Item State
+            <para>Only known when an item breaks or a broken item is repaired...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PartyMemberUpdate">
+            <summary>
+            Game Server Packet 0x7F - Party Member Update
+            <para>Updates a party member's information.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignMerc">
+            <summary>
+            Game Server Packet 0x81 - Assign Merc
+            <para>Assigns a mercenary when hired or resurrected (also sent for party members' mercs).</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PortalOwnership">
+            <summary>
+            Game Server Packet 0x82 - Portal Ownership
+            <para>Notifies you of a portal's ownership information when it comes into your range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCWantsInteract">
+            <summary>
+            Game Server Packet 0x8A - NPC Wants Interact
+            <para>Town folk wants to interact with player, normally for quests.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerPartyRelationship">
+            <summary>
+            Game Server Packet 0x8B - Player Party Relationship
+            <para>Update the party specific relationship flags (in a party, invites...)</para>
+            <para>This is always relative to you unlike regular flags (0x8C) which you get for all players.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PlayerRelationship">
+            <summary>
+            Game Server Packet 0x8C - Player Relationship
+            <para>Update the relationship flags (squelch, etc) between two players.</para>
+            <para>This packet will cover all players in the game, including your own character.</para>
+            <para>If the relationship is changed by more than one player a packet will be sent for each player. 
+            E.g. turning hostile on someone will generally make him hostile to you automatically...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignPlayerToParty">
+            <summary>
+            Game Server Packet 0x8D - Assign Player To Party
+            <para>Notifies you that a player is now in a party.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignPlayerCorpse">
+            <summary>
+            Game Server Packet 0x8E - Assign Player Corpse
+            <para>Assigns a corpse UID to a slain player or remove a picked up corpse.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.Pong">
+            <summary>
+            Game Server Packet 0x8F - Pong
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.PartyMemberPulse">
+            <summary>
+            Game Server Packet 0x90 - Party Member Pulse
+            <para>You should receive this packet every second for each member of your party not in range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.BaseSkillLevel">
+            <summary>
+            Readonly information 
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SkillLog">
+            <summary>
+            Game Server Packet 0x94 - Skill Log
+            <para>Notifies you of your current skills base levels on game join and when they change.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.LifeManaChange">
+            <summary>
+            Game Server Packet 0x95 - Life Mana Change
+            <para>Notifies that the receiving player's life and / or mana has changed.</para>
+            <para>If stamina changes (e.g. removing a stamina granting charm), 
+            a <see cref="T:D2Packets.GameServer.WalkVerify"/> packet will be sent instead.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.LifeManaChange.Unknown85b">
+            <summary>
+            31 bits left in packet... sometimes used.
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.WalkVerify">
+            <summary>
+            Game Server Packet 0x96 - Walk Verify
+            <para>Used to update your stamina and sync up with server during run / walk.</para>
+            <para>This is also sent if stamina changes due to items or regeneration, with State == 0.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.WalkVerify.State">
+            <summary>
+            Some kind of state or count...
+            <para>If 0, the player is done moving; otherwise another Walk Verify will usually be sent shortly afterwards.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SwitchWeaponSet">
+            <summary>
+            Game Server Packet 0x97 - Switch Weapon Set
+            <para>Sent when switching weapons to toogle the active weapon set.</para>
+            <para>Also sent when joining game with alternate weapons as active set.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ItemEventCause">
+            <summary>
+            Event type of item triggered skill used by <see cref="T:D2Packets.GameServer.ItemTriggerSkill"/>.
+            TODO: test StatType.SkillOnKill, StatType.SkillOnDeath and StatType.SkillOnLevelUp
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.ItemEventCause.Target">
+            <summary>
+            StatType.SkillOnStriking, StatType.SkillOnAttack (and StatType.SkillOnKill ?)
+            </summary>
+        </member>
+        <member name="F:D2Packets.GameServer.ItemEventCause.Owner">
+            <summary>
+            StatType.SkillOnGetHit
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ItemTriggerSkill">
+            <summary>
+            Game Server Packet 0x99 - Item Trigger Skill
+            <para>An item's chance to cast a skill on event takes effect.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.ItemAction">
+            <summary>
+            Game Server Packet Wrapper - Item Action
+            <para>Wrapper for <see cref="T:D2Packets.GameServer.WorldItemAction"/> and <see cref="T:D2Packets.GameServer.OwnedItemAction"/>.</para>
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.ItemAction.Name">
+            <summary>
+            Personalised item's / ear's owner.
+            </summary>
+        </member>
+        <member name="P:D2Packets.GameServer.ItemAction.Use">
+            <summary>
+            TODO: figure out what this is exactly...  tp tome = 0, id tome = 1
+            <para>1 == action click ??</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.WorldItemAction">
+            <summary>
+            Game Server Packet 0x9C - World Item Action
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.OwnedItemAction">
+            <summary>
+            Game Server Packet 0x9D - Owned Item Action
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercAttributeNotification">
+            <summary>
+            Game Server Packet Wrapper - Merc Attribute Notification
+            <para>Wrapper for <see cref="T:D2Packets.GameServer.MercAttributeByte"/>, <see cref="T:D2Packets.GameServer.MercAttributeWord"/> and 
+            <see cref="T:D2Packets.GameServer.MercAttributeDWord"/>.</para>
+            <para>TEST: also used for pets ?</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercAttributeByte">
+            <summary>
+            Game Server Packet 0x9E - Merc Attribute Byte
+            <para>Notifies of a mercenary's single base attribute as a single byte.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercAttributeWord">
+            <summary>
+            Game Server Packet 0x9F - Merc Attribute Word
+            <para>Notifies of a mercenary's single base attribute as a word.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercAttributeDWord">
+            <summary>
+            Game Server Packet 0xA0 - Merc Attribute DWord
+            <para>Notifies of a mercenary's single base attribute as a DWord.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercGainExperience">
+            <summary>
+            Game Server Packet Wrapper - Merc Gain Experience
+            <para>Wrapper for <see cref="T:D2Packets.GameServer.MercByteToExperience"/> and <see cref="T:D2Packets.GameServer.MercWordToExperience"/>.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercByteToExperience">
+            <summary>
+            Game Server Packet 0xA1 - Merc Byte To Experience
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.MercWordToExperience">
+            <summary>
+            Game Server Packet 0xA2 - Merc Word To Experience
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.DelayedState">
+            <summary>
+            Game Server Packet 0xA7 - Delayed State
+            <para>A player casts/selects a long lasting skill like a frozen orb/blizzard etc.</para>
+            <para>Only seems related to a few auras, long lasting spells and when a monster gets frozen / stunned.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.SetState">
+            <summary>
+            Game Server Packet 0xA8 - Set State
+            <para>Notifies to start applying potion / aura / cast delay state effect.</para>
+            <para>The server will send you this packet followed by a 0x47 and 0x48 for every player covered by the aura/spell.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.EndState">
+            <summary>
+            Game Server Packet 0xA9 - End State
+            <para>Notifies a potion / aura's effect is over or the unit no longer is covered by it.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AddUnit">
+            <summary>
+            Game Server Packet 0xAA - Add Unit
+            <para>Create new Unit or mark old one as valid (generally within 4 screen of player).</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.NPCHeal">
+            <summary>
+            Game Server Packet 0xAB - NPC Heal
+            <para>An NPC within your range of view has gained some life.</para>
+            <para>TEST: Applies to heal spells too or only regeneration?</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.AssignNPC">
+            <summary>
+            Game Server Packet 0xAC - Assign NPC
+            <para>An NPC is being assigned to a location with in your range of view.</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.WardenCheck">
+            <summary>
+            Game Server Packet 0xAE - Warden Check
+            <para>Teh Unholy Guardian of Secrets...</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.RequestLogonInfo">
+            <summary>
+            Game Server Packet 0xAF - Request Logon Info
+            <para>First packet sent by Game Server when connection is established. Sent uncompressed !</para>
+            </summary>
+        </member>
+        <member name="T:D2Packets.GameServer.GameOver">
+            <summary>
+            Game Server Packet 0xB0 - Game Over
+            <para>Notifies client of server's intention to drop the connection.</para>
+            <para>Sent in reply to GameClient.ExitGame, normally followed by UnloadDone and GameLogoutSuccess.</para>
+            </summary>
+        </member>
+    </members>
+</doc>
