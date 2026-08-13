@@ -1,0 +1,106 @@
+﻿BotTester -> Config.xml in /bin/debug/ directory:
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<BotTesterConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <AgbUsername>Username</AgbUsername>
+	  <AgbPassword>Password</AgbPassword>
+	  <Profiles>
+		<Profile>
+		  <Username>SomeAccount</Username>
+		  <Password>somepassz!!</Password>
+		  <Client>Diablo2LoD</Client>
+		  <Difficulty>Normal</Difficulty>
+		  <Character>
+			<Name>MyCharName</Name>
+			<Realm>USWest</Realm>
+			<Class>Sorceress</Class>
+		  </Character>
+		</Profile>
+	  </Profiles>
+	  <CdKeys>
+		<CdKeySet>
+		  <Classic>classickey1</Classic>
+		  <Expansion>lodkey1</Expansion>
+		</CdKeySet>
+		<CdKeySet>
+		  <Classic>classickey2</Classic>
+		  <Expansion>lodkey2</Expansion>
+		</CdKeySet>
+	  </CdKeys>
+	  <Proxies />
+	</BotTesterConfig>
+	
+Driver (for above character) -> Config.xml in /bin/debug/characters/MyCharName@USWest/Driver/config.xml
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<DriverConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <!-- Set this to -1 to have it randomly generate a game name -->
+	  <GameName>-1</GameName>
+	  <!-- Set this to -1 to have it randomly generate a password -->
+	  <GamePassword>-1</GamePassword>
+	</DriverConfig>
+	
+PickIt -> Config.xml in /bin/debug/PickIt/config.xml
+	<?xml version="1.0" encoding="utf-8"?>
+	<PickItConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <Categories>
+	  
+		<PickItCategory>
+		  <Name>Exceptional uniques</Name>
+		  <Items>
+			<PickItRequirement>
+			  <Mods>ResistAll &gt;= 30</Mods>
+			  <Description>Good Vipermagi</Description>
+			  <ItemClass>SerpentskinArmor</ItemClass>
+			  <Quality>Unique</Quality>
+			  <Result>Keep</Result>
+			</PickItRequirement>
+			<PickItRequirement>
+			  <Mods>ResistAll &gt;= 20</Mods>
+			  <Description>bad Vipermagi</Description>
+			  <ItemClass>SerpentskinArmor</ItemClass>
+			  <Quality>Unique</Quality>
+			  <Result>Keep</Result>
+			</PickItRequirement>
+		  </Items>
+		</PickItCategory>
+	  
+		<PickItCategory>
+		  <Name>Elite uniques</Name>
+		  <Items>
+			<PickItRequirement>
+			  <Description>CoA</Description>
+			  <ItemClass>Corona</ItemClass>
+			  <Quality>Unique</Quality>
+			  <Result>Keep</Result>
+			</PickItRequirement>
+		  </Items>
+		</PickItCategory>
+		
+		<PickItCategory>
+		  <Name>Charms</Name>
+		  <Items>
+			<PickItRequirement>
+			  <Mods>MaxLife &gt;= 15</Mods>
+			  <Description>Life SC</Description>
+			  <ItemClass>SmallCharm</ItemClass>
+			  <Quality>Magic</Quality>
+			  <Result>Keep</Result>
+			</PickItRequirement>
+		  </Items>
+		</PickItCategory>
+		
+		<PickItCategory>
+		  <Name>Socketables</Name>
+		  <Items>
+			<PickItRequirement>
+			  <Stats>Sockets == 4</Stats>
+			  <Description>Spirit crystal sword</Description>
+			  <ItemClass>CrystalSword</ItemClass>
+			  <Quality>Normal</Quality>
+			  <Result>Keep</Result>
+			</PickItRequirement>
+		  </Items>
+		</PickItCategory>
+	  </Categories>
+	</PickItConfig>

@@ -1,0 +1,41 @@
+﻿BotTester -> Config.xml in /bin/debug/ directory:
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<BotTesterConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <AgbUsername>Username</AgbUsername>
+	  <AgbPassword>Password</AgbPassword>
+	  <Profiles>
+		<Profile>
+		  <Username>SomeAccount</Username>
+		  <Password>somepassz!!</Password>
+		  <Client>Diablo2LoD</Client>
+		  <Difficulty>Normal</Difficulty>
+		  <Character>
+			<Name>MyCharName</Name>
+			<Realm>USWest</Realm>
+			<Class>Sorceress</Class>
+		  </Character>
+		</Profile>
+	  </Profiles>
+	  <CdKeys>
+		<CdKeySet>
+		  <Classic>classickey1</Classic>
+		  <Expansion>lodkey1</Expansion>
+		</CdKeySet>
+		<CdKeySet>
+		  <Classic>classickey2</Classic>
+		  <Expansion>lodkey2</Expansion>
+		</CdKeySet>
+	  </CdKeys>
+	  <Proxies />
+	</BotTesterConfig>
+	
+Driver (for above character) -> Config.xml in /bin/debug/characters/MyCharName@USWest/Driver/config.xml
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<DriverConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	  <!-- Set this to -1 to have it randomly generate a game name -->
+	  <GameName>-1</GameName>
+	  <!-- Set this to -1 to have it randomly generate a password -->
+	  <GamePassword>-1</GamePassword>
+	</DriverConfig>

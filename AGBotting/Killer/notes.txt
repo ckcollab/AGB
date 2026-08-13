@@ -1,0 +1,12 @@
+﻿How to select an attack method:
+	Based on what skills are maxed (Lightning, meteor, blizzard)
+
+Types of attacks methods:
+	Ranged (Lightning, Lightning fury)
+		Stay within 1.5 screens of monster, moving to least dangerous tiles to stay within range?
+	Ranged 2 type (fireball + meteor, glacial + blizz)
+		Same as before, just casting two attacks -- same thing?
+	Hammers
+		Get in close to most dangerous zones and hammer
+	Meele
+		Same as before?
