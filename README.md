@@ -4,5 +4,14 @@ My old Diablo 2 bot stuff...
 
 ### Credits
 
-ShadowDancer - Huge reverse engineering help (generating D2 map without client running)
-ET (can't remember his name, think this was it) - D2 packet structures and networking stuff
+Thanks to Netter, Sheppard and McGod for their help finding offsets for this project and in the past.
+
+Thanks to Jigg for constantly inspiring me to get /it/ done.
+
+Thanks to Lord2800 for always arguing with me and helping me find the cleanest solution, not to mention his help with the map panel in this project.
+
+Thanks to AntiRush and E.T. for, basically, getting me started.
+
+Thanks to ShadowDancer for all of his help with the back end stuff.
+
+This would not be possible without them and I hope I didn't leave anyone out.

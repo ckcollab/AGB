@@ -1,0 +1,77 @@
+0.5.0
+	[ADDED]		Some checks for the new Diablo Directory configuration
+0.4.2
+	[ADDED]		Map generation server
+	[REMOVED]	All connections to Agb.Server
+0.4.1
+	[ADDED]		Connects to AGB Server now, instead of my home computer
+0.4.0
+	[FIXED]		Map distortion finally fixed, tyvm ShadowDancer
+	[FIXED]		Another attempt to fix compatibility with 64 (doesn't seem to work yet)
+0.3.9
+	[FIXED]		Removed struct unions so the MapHack works with Vista 64 (doesn't seem to work yet)
+0.3.8
+	[FIXED]		Tons of exceptions are now caught instead of causing crashes
+	[FIXED]		Hopefully fixed a crash when you're out of runs
+0.3.7
+	[ADDED]		Significant improvements in bandwidth
+	[BROKEN]	Offsets for paths DOES NOT work
+0.3.6
+	[ADDED]		Saves tele hotkey
+	[ADDED]		Offsets for paths
+0.3.5
+	[FIXED]		Index out of range exception upon loading
+	[FIXED]		Increased the teleport pathing goal range from 2 to 5, should fix problems with Ancients Way and such
+0.3.4
+	[FIXED]		Game difficulty wasn't correct... should fix a _lot_ of problems
+	[FIXED]		GetMap/GetMapResult has been optimized and is no longer serialized, it's manually parsed
+	[FIXED]		Added checks for server crashing, shouldn't crash client now
+0.3.3
+	[FIXED]		Auto-teleing in town
+	[FIXED]		Sometimes not selecting the teleport skill
+	[FIXED]		ThickenWalls wasn't updated when collisions were
+	[FIXED]		Only paths when your character is completely in the level
+	[ADDED]		Pathing for: Throne of Destruction, Sewers Level 1-3, Far Oasis to Maggot Lair, Maggot Lair Level 1-3, Claw Viper Temple Level 1, Tal Rasha's Tomb to Orifice, and Chaos Sanctuary to the Seal, Halls of the Dead Level 1-3, Crystalline Passage, Ancient's Way, from River of Flame to the Hellforge, Nihlathak's Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught
+			(Known to NOT work: Pathing to the CORRECT Tal Rasha's Tomb, Pathing to Anya (and anything that's an area change without a warp))
+			(Thanks to AlexBF)
+0.3.2
+	[ADDED]		Auto-tele, but I'm tired -- didn't add it to config or anything
+			so you have to keep re-selecting it and stuff.
+			RELATIVELY UNTESTED!
+	[ADDED]		Rakishnu and Izual pathing
+	[FIXED]		Increased timeouts to 10 seconds
+	[FIXED]		Tele paths fixed, I think;  tested them about 30 times
+0.2.1
+	[ADDED]		Countess pathing information comes with the maphack now
+	[FIXED]		Disabled teleport pathing for now
+0.2.0
+	[FIXED]		Maggot lair and Barracks
+	[FIXED]		Unwalkable areas showing up as walkable
+	[ADDED] 	File mapcache.cache
+	[REMOVED]	File rooms.rlst
+0.1.1
+	[FIXED] 	OutOfRuns error
+0.1.0
+	[ADDED] 	Readme
+	[ADDED] 	Icon
+0.0.4
+	[FIXED] 	Correctly SAVES 800x600 settings (Thanks bks`jmr)
+	[FIXED] 	Rejoining and being in the same area no longer results in no map being generated
+	[FIXED] 	No longer points to the last Tomb (or any Tomb for that matter)
+	[FIXED] 	Moved the Seed offset, might work better (thanks Shadow)
+0.0.3
+	[FIXED] 	(Maybe) Put locks on anything that sets the map seed, just-in-case
+	[FIXED] 	Max size increased to 800x600
+	[FIXED] 	Warns user of bad XML configuration
+	[ADDED] 	Draws warps as red blocks
+	[ADDED] 	Draws waypoints as blue blocks (ty McGod)
+	[ADDED] 	Draws lines to units that can't be pathed to (Summoner)
+	[ADDED] 	(Attempts) Pathing to next level (not sure of the logic on this one)
+	[ADDED] 	Default paths now include: Catacombs, Summoner, Hephisto
+	[ADDED] 	Warning message box, this is ALPHA!
+0.0.2
+	[FIXED] 	No longer possible to get free runs
+	[FIXED] 	Behaves correctly when "OutOfRuns"
+	[ADDED] 	Level exits are now big red squares
+0.0.1
+	Release
